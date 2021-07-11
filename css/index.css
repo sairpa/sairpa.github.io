@@ -1,0 +1,91 @@
+.centerstuff{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .centerstuffend{
+    display: flex;
+    width: 100%;
+    height:90%;
+    font-size:x-large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: center;
+    align-items: center;
+  }
+  body{
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  .title{
+      font-size: 3vw;
+  }
+  html { font-size: 22px; }
+body { padding: 1rem; }
+
+/* Colors 
+   Start*/
+.red{
+  background-color: rgb(255, 97, 97);
+}
+.yellow{
+  background-color: rgb(255, 255, 118);
+}
+.orange{
+  background-color: rgb(255, 195, 84);
+}
+.royalblue{
+  background-color: #005b6b9a;
+}
+.green{
+  background-color: rgb(82, 255, 189);
+}
+.pink{
+  background-color: rgba(226, 0, 38, 0.507);
+}
+.lavender{
+  background-color: #d7b9d5;
+}
+.olive{
+  background-color: rgba(0, 196, 88, 0.699);
+}
+.blue{
+  background-color: rgb(129, 129, 255);
+}
+.iceblue{
+  background-color: aqua;
+}
+/* Colors
+   End */
+
+
+.card {
+  color: rgb(0, 0, 0);
+  padding: 1em;
+  height: 5em;
+  transition: all .3s ease;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.253);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 2px 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card.expand{
+  height: 50vh;
+  width: 100vw;
+}
+
+.cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+}
+
+
+
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  
+}
