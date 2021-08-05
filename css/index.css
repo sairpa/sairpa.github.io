@@ -27,7 +27,7 @@ body { padding: 1rem; }
   background-color: rgb(255, 97, 97);
 }
 .yellow{
-  background-color: rgb(255, 255, 118);
+  background-color: rgb(255, 255, 97);
 }
 .orange{
   background-color: rgb(255, 195, 84);
@@ -53,6 +53,10 @@ body { padding: 1rem; }
 .iceblue{
   background-color: aqua;
 }
+.transparent{
+  background-color: rgba(0, 0, 0, 0);
+}
+
 /* Colors
    End */
 
@@ -67,14 +71,19 @@ body { padding: 1rem; }
   overflow: hidden;
 }
 
+.cardt{
+  color: rgb(0, 0, 0);
+  padding: 1em;
+  height: 5em;
+  transition: all .3s ease;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
 .card:hover {
   box-shadow: 2px 8px 16px 0 rgba(0, 0, 0, 0.5);
 }
 
-.card.expand{
-  height: 50vh;
-  width: 100vw;
-}
 
 .cards {
   max-width: 1200px;
@@ -84,8 +93,102 @@ body { padding: 1rem; }
 }
 
 
-
-@media (min-width: 600px) {
-  .cards { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-  
+.overlayup{
+  height: 0;
+  width: 100%;
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  background-color: #ff7272ee; 
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s;
 }
+
+.overlaydown{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #52FFBD;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.overlayleft{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #8181FF;
+  overflow: hidden;
+  width: 0%;
+  height: 100%;
+  transition: .5s ease;
+}
+
+.overlayright{
+  position: absolute;
+  bottom: 0;
+  left: 10;
+  right: 0;
+  background-color: #00FFFF;
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: .5s ease;
+}
+
+#myProgress {
+  margin: auto;
+  width: 100%;
+  color: black;
+}
+
+#myBar {
+  
+  width: 1%;
+  height: 30px;
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: white;
+  background-color: #7700ff;
+}
+
+
+.overlay-content{
+  position: relative;
+  top: 5%; 
+  width: 100%; 
+  text-align: center; 
+  margin-top: 30px;
+}
+
+.contactcontent{
+  margin: 1%;
+}
+
+.overlay-content p:hover ,.overlay-content p:focus {
+  color: #f1f1f1;
+}
+
+
+.closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+
+@media (min-width: 800px) {
+  .cards { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  }  
+}
+
+@media only screen and (max-width: 1000px) {
+  .cardt { display: none;}
+}
+

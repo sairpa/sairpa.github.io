@@ -3,27 +3,151 @@
 
     <link rel="stylesheet" type="text/css" href="./css/index.css" />
     <head>
-        <title>Pranav Ajay's Bio</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Pranav Ajay's Bio</title>
+      <meta charset="UTF-8">
+      <meta name="author" content="rpc Inc.">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-    <body>
-		<h1 class="title centerstuff"> sairpa sairpa sairpa 🙂</h1>
+    <div>
+		<h1 class="title centerstuff"> Pranav Ajay R 🙂</h1>
+
+      <!-- Bio Content -->
+      <div id="Bio" class="overlayup">
+
+        
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNavU()">&times;</a>
+       
+         <!-- Overlay content -->
+         <div class="overlay-content">
+         <img src="./images/me.jpg" height="200px" alt="My Pretty Face should have been here!">
+         <h1> R Pranav Ajay </h1>
+         <h3> He/His/Him </h3>
+         <h3> From <a href="https://goo.gl/maps/SMRcNNqYajpMvNbc6"> Trichy </a></h3>
+         <h3> Digital Artist<br> Native Android App Developer</h3>
+         <h3> UI/UX Developer and Content Creator at <a href="https://www.palladiumos.com/team"> Team Palladium</a> </h3>
+         <h3> Currently learning Game Development and trying to be consistent on Blogging! </h3>
+         <h3><a href="https://sairpa.github.io/Resume/">Résumé</a></h3>
+         </div>
+       
+       </div>
+      </div>
+       
+      <!-- Contact Info -->
+      <div id="Contact" class="overlaydown">
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNavD()">&times;</a>
+         <div class="overlay-content">
+            <a href="https://github.com/sairpa" class="contactcontent"><img src="images/github.png" alt="Github profile" width="100px"></a>
+            <a href="https://www.linkedin.com/in/sairpa/" class="contactcontent"> <img src="images/linkedin.png" alt="Linkedin profile" width="100px"></a>
+            <a href="mailto:pranav.ajay2000@gmail.com" class="contactcontent"> <img src="images/mail.png" alt="Mail ID" width="100px"> </a>
+            <a href="tellto:999433088188" class="contactcontent"> <img src="images/phone.png" alt="Contact No" width="100px"> </a>
+         </div>
+       </div>
+
+      <!-- Projects Info -->
+      <div id="Projects" class="overlayleft">
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNavL()">&times;</a>
+         <div class="overlay-content">
+            <h1>Projects</h1>
+               <h3> <a href="https://www.palladiumos.com/">Palladium OS </a>  </h3>
+               <h3> <a href="https://github.com/sairpa/ToonLytV2"> ToonLytV2 </a></h3>
+               <h3> <a href="https://github.com/sairpa/kreative_rum"> Kreative Rum </a> </h3>
+               <h3> <a href="https://github.com/Somnath1708/Boredom-Reliever"> Boredom Reliever</a> </h3>
+         </div>
+      </div>
+
+      <!-- Blog -->
+      <div id="Blog" class="overlayright">
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNavR()">&times;</a>
+         <div class="overlay-content">
+            <div id="myProgress">
+               <div id="myBar">10%</div>
+             </div>
+
+         </div>
+      </div>
 
       <!-- The place for having Grids! -->
       <div class="cards">
-      <div class="card orange">
-       ONE 
-      </div>
-      <div class="card red">TWO</div>
-      <div class="card iceblue">THREE</div>
-      <div class="card pink">FOUR</div>
-      <div class="card olive">FIVE</div>
-      <div class="card royalblue">SIX</div>
-      <div class="card blue">SEVEN</div>
-      <div class="card lavender">EIGHT</div>
-      <div class="card green">NINE</div>
+      <div class="cardt transparent"></div>
+      <div class="card red centerstuff" onclick="openNavU()">Bio😁</div>
+      <div class="cardt transparent"></div>
+      <div class="card blue centerstuff" onclick="openNavL()">Projects🔨</div>
+      <div class="cardt transparent"></div>
+      <div class="card iceblue centerstuff" onclick="openNavR()">Blog📑</div>
+      <div class="cardt transparent"></div>
+      <div class="card green centerstuff" onclick="openNavD()">Contacts📞</div>
+      <div class="cardt transparent"></div>
     </div>
 
+    <!-- <picture>
+      <source 
+         media="(min-width: 650px)"
+         srcset="images/1.jpg">
+      <source 
+         media="(min-width: 465px)"
+         srcset="images/2.jpg">
+      <img src="images/windows1.png" 
+      alt="Portfolio">
+   </picture> -->
+   
+
     </body>
+
+    <script>
+
+   function openNavU() {
+   document.getElementById("Bio").style.height = "100%";
+   }
+
+   function closeNavU() {
+   document.getElementById("Bio").style.height = "0%";
+   }
+
+   function openNavD() {
+   document.getElementById("Contact").style.height = "100%";
+   }
+
+   function closeNavD() {
+   document.getElementById("Contact").style.height = "0%";
+   }
+
+   function openNavL() {
+   document.getElementById("Projects").style.width = "100%";
+   }
+
+   function closeNavL() {
+   document.getElementById("Projects").style.width = "0%";
+   }
+
+   function openNavR() {
+   document.getElementById("Blog").style.width = "100%";
+   setTimeout(function(){ move(); }, 500);
+   }
+
+   function closeNavR() {
+   document.getElementById("Blog").style.width = "0%";
+   }
+
+   var i = 0;
+   function move() {
+   if (i == 0) {
+      i = 1;
+      var elem = document.getElementById("myBar");
+      var width = 10;
+      var id = setInterval(frame, 10);
+      function frame() {
+         if (width >= 100) {
+         clearInterval(id);
+         i = 0;
+         } else {
+         width++;
+         elem.style.width = width + "%";
+         elem.innerHTML = width + "%";
+         }
+      }
+   }
+   }
+
+    </script>
 </html>
 
