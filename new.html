@@ -30,7 +30,7 @@
 
       <blockquote class="left" style="background: rgba(58, 58, 58, 0.856);">
         
-            <p style="color: green; text-align:right;">
+            <p style="color: rgb(0, 252, 189); text-align:right;">
               Software Developer <br> <br>
               3D Modeler <br> <br>
               Digital Artist <br> <br>
@@ -39,87 +39,85 @@
       </blockquote>
 
       <section style="grid-column: 2 / 12;">
-        <h2> 👩🏽‍🚀 Projects</h2>
-        <div class="slideshow-container">
+        <h2 style=" text-align: center; font-size: 3.5vh;"> 👩🏽‍🚀 Projects</h2>
+        <div class="grid-container">
+        <div class="card" style="padding:10%;">
+          <img class="center" src="./images/pdos.png" alt="Avatar" style="width:65%;">
+          <div class="container">
+            <h4><b>UI/ UX Designer <br> @Team Palladium OS</b></h4>
+            <p><ul>
+              <li>Android UI Improvements</li>
+              <li>Android App redecorations</li>
+              <li>Promotional Banners and Videos</li>
+              <li>Android Studio, Kotlin, After Effects, Krita</li>
+            </ul>
+            <a href="https://palladiumos.com/" target="_blank" style="color: rgb(96, 255, 221);">Visit Project</a>
+          </p>
+          </div>
+        </div>
 
-          <div class="mySlides fade">
-            <div class="numbertext">1 / 3</div>
-            <img src="./images/pdos.png" style="width:100%">
-            <div class="text" style="color: green;">Palladium OS</div>
+        <div class="card" style="padding:10%; margin-left: 5%; margin-right: 5%;">
+          <img class="center" src="./images/toonlyt.png" alt="Avatar" style="width:105%;">
+          <div class="container">
+            <h4><b>ToonLyt</b></h4>
+            <p><ul>
+              <li>Android app which can create <b> pastiches</b></li>
+              <li>Neuaral Style Transfer</li>
+              <li>Android Studio, Kotlin, TensorFlow Lite, CameraX</li>
+            </ul>
+            <a href="https://github.com/sairpa/ToonLytV2" target="_blank" style="color: rgb(253, 77, 65);">Visit Project</a>
+          </p>
           </div>
-          
-          <div class="mySlides fade">
-            <div class="numbertext">2 / 3</div>
-            <img src="./images/toonlyt.png" style="width:100%">
-            <div class="text" style="color: rgba(0, 23, 97, 0.986);">ToonLyt V2</div>
+        </div>
+        
+        <div class="card" style="padding:10%">
+          <img class="center" src="./images/ArtStation-logo-vertical-dark 1.svg" alt="Avatar" style="width:67%;">
+          <div class="container">
+            <h4><b>My Artstation</b></h4>
+            <p>
+              <ul>
+                <li>My collection of Digital Art</li>
+                <li>My upcoming 3D Models, Animations</li>
+                <li>Stack: Blender, Krita</li>
+              </ul>
+              <a href="https://sairpa.artstation.com/" target="_blank" style="color: rgb(100, 167, 255);">Visit Project</a>
+            </p>
           </div>
-          
-          <div class="mySlides fade">
-            <div class="numbertext">3 / 3</div>
-            <img src="./images/kreativerum.png" style="width:100%">
-            <div class="text" style="color: rgb(255, 123, 0);">Kreative Rum</div>
-          </div>
-          
-          </div>
-          <br>
-          
-          <div style="text-align:center">
-            <span class="dot"></span> 
-            <span class="dot"></span> 
-            <span class="dot"></span> 
-          </div>
-
+        </div>
+      </div>
         
 
       </section>
 
-      <section class="light">
+      <section class="light" style="padding: 10%; padding-bottom: 15%;">
 
-        <h2> Contact me 🤙</h2>
+        <h2> Connect with me! 🤙</h2>
 
         <div class="grid-container">
-          <div class="grid-item">
-            <a href="https://github.com/sairpa" class="contactcontent"><img src="images/github.png" alt="Github profile" width="100px"></a>
+          <div class="grid-item aa">
+            <a href="https://github.com/sairpa" target="_blank" class="contactcontent" style="color: rgb(255, 198, 172);">GitHub</a>
           </div>
-          <div class="grid-item">
-            <a href="https://www.linkedin.com/in/sairpa/" class="contactcontent"> <img src="images/linkedin.png" alt="Linkedin profile" width="100px"></a>
+          <div class="grid-item ab">
+            <a href="https://www.linkedin.com/in/sairpa/" target="_blank" class="contactcontent" style="color: rgb(245, 255, 191);">LinkedIn</a>
           </div>
-          <div class="grid-item">
-            <a href="mailto:pranav.ajay2000@gmail.com" class="contactcontent"> <img src="images/mail.png" alt="Mail ID" width="100px"> </a>
-          </div>   
+          <div class="grid-item ac">
+            <a href="mailto:pranav.ajay2000@gmail.com" target="_blank" class="contactcontent" style="color: rgb(191, 242, 255);">Twitter</a>
+          </div>
+          <div class="grid-item ad">
+            <a href="mailto:pranav.ajay2000@gmail.com" target="_blank" class="contactcontent" style="color: rgb(235, 170, 255);">Mail</a>
+          </div>
+          
         </div>
 
       </section>
 
 
-      <section style="background: transparent">
+      <section style="background: transparent; grid-column: 2 / 12;">
         <br>
-        <h1>Have a Good day! 🙂</h1>
+        <h1>Checkout my Blog <a href="https://sairpa.github.io/Blog/" target="_blank" style="color: orange;">here</a>!</h1>
       </section>
 
 
     </main>
   </body>
-
-  <script>
-    let slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
-  </script>
 </html>
