@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbw0ktwjovvhx"]
+
+[ext_resource type="PackedScene" uid="uid://ihrnec777db" path="res://scenes/car.tscn" id="1_4exd7"]
+[ext_resource type="Script" uid="uid://b51d7kgvv6beq" path="res://scripts/camera_3d.gd" id="2_ic6my"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4exd7"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4exd7"]
+size = Vector3(100, 0, 100)
+
+[node name="Level0" type="Node3D"]
+
+[node name="swift_sport" parent="." instance=ExtResource("1_4exd7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.475, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(-1, 1.2721e-08, -1.47746e-07, -4.83553e-08, 0.913886, 0.405971, 1.40188e-07, 0.405971, -0.913886, 0.253094, 3.15405, -5.08841)
+keep_aspect = 0
+fov = 85.2
+near = 0.001
+script = ExtResource("2_ic6my")
+target = NodePath("../swift_sport")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_4exd7")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_4exd7")
