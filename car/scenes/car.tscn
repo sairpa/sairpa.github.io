@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ihrnec777db"]
+[gd_scene load_steps=7 format=3 uid="uid://ihrnec777db"]
 
 [ext_resource type="PackedScene" uid="uid://cg5lcvtrykg40" path="res://assets/swift_sport.glb" id="1_c35m8"]
 [ext_resource type="Script" uid="uid://di8ek3w5uaqw8" path="res://scripts/car.gd" id="1_qt2eu"]
@@ -9,6 +9,13 @@ bounce = 0.1
 [sub_resource type="SphereShape3D" id="SphereShape3D_c35m8"]
 radius = 1.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qt2eu"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_50v30"]
+material = SubResource("StandardMaterial3D_qt2eu")
+
 [node name="swift_sport" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_c35m8")
 gravity_scale = 5.0
@@ -16,12 +23,15 @@ angular_damp = 10.0
 script = ExtResource("1_qt2eu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_c35m8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 visible = false
+mesh = SubResource("SphereMesh_50v30")
 
 [node name="carmesh" parent="." instance=ExtResource("1_c35m8")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+top_level = true
 
 [node name="RayCast3D" type="RayCast3D" parent="carmesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391849, 0)

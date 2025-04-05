@@ -28,8 +28,8 @@ func _physics_process(delta):
 func _process(delta):
 	if not ground_ray.is_colliding():
 		return
-	speed_input = Input.get_axis("brake", "accelerate") * acceleration
-	turn_input = Input.get_axis("steer_right", "steer_left") * deg_to_rad(steering)
+	speed_input = Input.get_axis("ui_down", "ui_up") * acceleration
+	turn_input = Input.get_axis("ui_right", "ui_left") * deg_to_rad(steering)
 	right_wheel.rotation.y = turn_input
 	left_wheel.rotation.y = turn_input
 
