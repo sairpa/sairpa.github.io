@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ihrnec777db"]
+[gd_scene load_steps=7 format=3 uid="uid://cas54o843sd34"]
 
 [ext_resource type="PackedScene" uid="uid://cg5lcvtrykg40" path="res://assets/swift_sport.glb" id="1_c35m8"]
-[ext_resource type="Script" uid="uid://di8ek3w5uaqw8" path="res://scripts/car.gd" id="1_qt2eu"]
+[ext_resource type="Script" path="res://scripts/car.gd" id="1_qt2eu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c35m8"]
 bounce = 0.1

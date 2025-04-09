@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cbw0ktwjovvhx"]
 
-[ext_resource type="PackedScene" uid="uid://ihrnec777db" path="res://scenes/car.tscn" id="1_4exd7"]
+[ext_resource type="PackedScene" uid="uid://cas54o843sd34" path="res://scenes/car.tscn" id="1_4exd7"]
 [ext_resource type="Script" uid="uid://b51d7kgvv6beq" path="res://scripts/cam.gd" id="1_ic6my"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4exd7"]
@@ -35,13 +35,8 @@ glow_enabled = true
 transform = Transform3D(-4.37114e-08, -0.132256, 0.991216, 0, 0.991216, 0.132256, -1, 5.78111e-09, -4.33274e-08, 0, 1.92415, 4.12006)
 script = ExtResource("1_ic6my")
 offset = Vector3(4, 2, 0)
-follow_target = NodePath("../CarG/swift_sport")
-look_target = NodePath("../CarG/swift_sport")
-
-[node name="CarG" type="Node" parent="."]
-
-[node name="swift_sport" parent="CarG" instance=ExtResource("1_4exd7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+follow_target = NodePath("../swift_sport")
+look_target = NodePath("../swift_sport")
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_4exd7")
@@ -59,3 +54,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qsrgx")
+
+[node name="swift_sport" parent="." instance=ExtResource("1_4exd7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
