@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbw0ktwjovvhx"]
+[gd_scene load_steps=8 format=3 uid="uid://cbw0ktwjovvhx"]
 
 [ext_resource type="PackedScene" uid="uid://cas54o843sd34" path="res://scenes/car.tscn" id="1_4exd7"]
-[ext_resource type="Script" uid="uid://b5jetlvydiw1i" path="res://scripts/camera_3d.gd" id="1_ic6my"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4exd7"]
 size = Vector2(100, 100)
@@ -30,11 +29,6 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="Level0" type="Node3D"]
-
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("look_target")]
-script = ExtResource("1_ic6my")
-look_target = NodePath("../swift_sport")
-offset = Vector3(0, 2, 3)
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_4exd7")

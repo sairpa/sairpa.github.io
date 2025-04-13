@@ -1,13 +1,7 @@
 extends RigidBody3D
 
-@onready var camera_3d: Camera3D = %Camera3D
-@onready var camera_pivot: Node3D = %CameraPivot
-
-@export_range(0.0, 1.0) var mouse_sensitivity := 0.25
-@export var tilt_upper_limit := PI / 3.0
-@export var tilt_lower_limit := -PI / 6.0
-
-var _camera_input_direction := Vector2.ZERO 
+@onready var spring: SpringArm3D = %spring
+@onready var pivot: Node3D = %pivot
 
 var sphere_offset = Vector3.DOWN
 var acceleration = 50.0
@@ -25,19 +19,18 @@ var turn_input = 0
 @onready var right_wheel = $"carmesh/wheel-front-right"
 @onready var left_wheel = $"carmesh/wheel-front-left"
 
-#func _ready():
-#	ground_ray.add_exception(self)
-	
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
+	if event is InputEventMouseMotion:
+		pivot.rotate_y(-event.relative.x * 0.005)
+		spring.rotate_x(-event.relative.y * 0.005)
+		spring.rotation.x = clamp(spring.rotation.x, -PI/2, PI/2)
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _physics_process(delta):
-	#Vertical rotation component 
-	#camera_pivot.rotation.x += _camera_input_direction.y * delta 
-	#camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, tilt_lower_limit,tilt_upper_limit)
-	## Horizontal rotation component 
-	#camera_pivot.rotation.y -= _camera_input_direction.x * delta
-	#
-	#_camera_input_direction = Vector2.ZERO
-	
-	
 	car_mesh.position = position + sphere_offset
 	if ground_ray.is_colliding():
 		apply_central_force(-car_mesh.global_transform.basis.z * speed_input)
@@ -45,17 +38,14 @@ func _physics_process(delta):
 func _process(delta):
 	if not ground_ray.is_colliding():
 		return
+	
 	if Input.is_key_pressed(KEY_SHIFT):
-		speed_input = Input.get_axis("ui_up", "ui_down") * acceleration * 1
+		speed_input = Input.get_axis("accl", "brake") * acceleration * 1.35
 	else:
-		speed_input = Input.get_axis("ui_up", "ui_down") * acceleration
-	speed_input = Input.get_axis("ui_up", "ui_down") * acceleration
-	turn_input = Input.get_axis("ui_right", "ui_left") * deg_to_rad(steering)
+		speed_input = Input.get_axis("accl", "brake") * acceleration
+	turn_input = Input.get_axis("gright", "gleft") * deg_to_rad(steering)
 	right_wheel.rotation.y = turn_input
 	left_wheel.rotation.y = turn_input
-	
-	
-	
 	if linear_velocity.length() > turn_stop_limit:
 		var new_basis = car_mesh.global_transform.basis.rotated(car_mesh.global_transform.basis.y, turn_input)
 		car_mesh.global_transform.basis = car_mesh.global_transform.basis.slerp(new_basis, turn_speed * delta)
@@ -67,23 +57,9 @@ func _process(delta):
 			var xform = align_with_y(car_mesh.global_transform, n)
 			car_mesh.global_transform = car_mesh.global_transform.interpolate_with(xform, 10.0 * delta)
 
-#func _unhandled_input(event: InputEvent) -> void:
-	#var is_camera_motion := (
-		#event is InputEventMouseMotion and 
-		#Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
-	#)
-	#if is_camera_motion:
-		#_camera_input_direction = event.screen_relative * mouse_sensitivity
-
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("quit"):
-		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	#elif event.is_action_pressed("left_click"):
-		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		#
 
 func align_with_y(xform, new_y):
 	xform.basis.y = new_y
 	xform.basis.x = -xform.basis.z.cross(new_y)
-#	xform.basis = xform.basis.orthonormalized()
+	xform.basis = xform.basis.orthonormalized()
 	return xform.orthonormalized()
