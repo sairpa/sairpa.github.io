@@ -25,7 +25,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		pivot.rotate_y(-event.relative.x * 0.005)
 		spring.rotate_x(-event.relative.y * 0.005)
-		spring.rotation.x = clamp(spring.rotation.x, -PI/2, PI/2)
+		spring.rotation.x = clamp(spring.rotation.x, -PI/3, PI/3)
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

@@ -45,3 +45,4 @@ unique_name_in_owner = true
 spring_length = 3.0
 
 [node name="cam" type="Camera3D" parent="carmesh/pivot/spring"]
+fov = 60.0
