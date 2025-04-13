@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cas54o843sd34"]
 
 [ext_resource type="PackedScene" uid="uid://cg5lcvtrykg40" path="res://assets/swift_sport.glb" id="1_c35m8"]
-[ext_resource type="Script" path="res://scripts/car.gd" id="1_qt2eu"]
+[ext_resource type="Script" uid="uid://di8ek3w5uaqw8" path="res://scripts/car.gd" id="1_qt2eu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c35m8"]
 bounce = 0.1
@@ -35,3 +35,15 @@ top_level = true
 
 [node name="RayCast3D" type="RayCast3D" parent="carmesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391849, 0)
+
+[node name="CameraPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.962592, 0.270953, 0, -0.270953, 0.962592, 0, 0.582666, 0)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19209e-07, 10)
+visible = false
+keep_aspect = 0
+fov = 60.0

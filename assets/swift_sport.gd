@@ -1,13 +1,4 @@
-extends RigidBody3D
-
-@onready var camera_3d: Camera3D = %Camera3D
-@onready var camera_pivot: Node3D = %CameraPivot
-
-@export_range(0.0, 1.0) var mouse_sensitivity := 0.25
-@export var tilt_upper_limit := PI / 3.0
-@export var tilt_lower_limit := -PI / 6.0
-
-var _camera_input_direction := Vector2.ZERO 
+class_name swift extends Node3D
 
 var sphere_offset = Vector3.DOWN
 var acceleration = 50.0
@@ -25,23 +16,11 @@ var turn_input = 0
 @onready var right_wheel = $"carmesh/wheel-front-right"
 @onready var left_wheel = $"carmesh/wheel-front-left"
 
-#func _ready():
-#	ground_ray.add_exception(self)
-	
 func _physics_process(delta):
-	#Vertical rotation component 
-	#camera_pivot.rotation.x += _camera_input_direction.y * delta 
-	#camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, tilt_lower_limit,tilt_upper_limit)
-	## Horizontal rotation component 
-	#camera_pivot.rotation.y -= _camera_input_direction.x * delta
-	#
-	#_camera_input_direction = Vector2.ZERO
-	
-	
 	car_mesh.position = position + sphere_offset
 	if ground_ray.is_colliding():
 		apply_central_force(-car_mesh.global_transform.basis.z * speed_input)
-	
+
 func _process(delta):
 	if not ground_ray.is_colliding():
 		return
@@ -67,20 +46,6 @@ func _process(delta):
 			var xform = align_with_y(car_mesh.global_transform, n)
 			car_mesh.global_transform = car_mesh.global_transform.interpolate_with(xform, 10.0 * delta)
 
-#func _unhandled_input(event: InputEvent) -> void:
-	#var is_camera_motion := (
-		#event is InputEventMouseMotion and 
-		#Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
-	#)
-	#if is_camera_motion:
-		#_camera_input_direction = event.screen_relative * mouse_sensitivity
-
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("quit"):
-		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	#elif event.is_action_pressed("left_click"):
-		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		#
 
 func align_with_y(xform, new_y):
 	xform.basis.y = new_y
