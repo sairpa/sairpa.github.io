@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbw0ktwjovvhx"]
+[gd_scene load_steps=9 format=3 uid="uid://cbw0ktwjovvhx"]
 
 [ext_resource type="PackedScene" uid="uid://cas54o843sd34" path="res://scenes/car.tscn" id="1_4exd7"]
+[ext_resource type="PackedScene" uid="uid://bpl0fnr03csr1" path="res://assets/world.glb" id="1_ic6my"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4exd7"]
-size = Vector2(100, 100)
+size = Vector2(150, 150)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4exd7"]
-albedo_color = Color(0.0980392, 0.0980392, 0.0980392, 0.552941)
+albedo_color = Color(0, 0.309804, 0.337255, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4exd7"]
 size = Vector3(100, 0, 100)
@@ -30,7 +31,11 @@ glow_enabled = true
 
 [node name="Level0" type="Node3D"]
 
+[node name="world" parent="." instance=ExtResource("1_ic6my")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.000998497, -9.9679, -0.00863266)
+
 [node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000998497, -9.84143, -0.00863266)
 mesh = SubResource("PlaneMesh_4exd7")
 skeleton = NodePath("StaticBody3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_4exd7")
@@ -48,4 +53,3 @@ shadow_enabled = true
 environment = SubResource("Environment_qsrgx")
 
 [node name="swift_sport" parent="." instance=ExtResource("1_4exd7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

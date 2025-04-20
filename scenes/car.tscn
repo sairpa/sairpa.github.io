@@ -38,7 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391849, 0)
 
 [node name="pivot" type="Node3D" parent="carmesh"]
 unique_name_in_owner = true
-transform = Transform3D(-1, -2.417e-08, 1.49049e-07, 0, 0.987106, 0.160071, -1.50996e-07, 0.160071, -0.987106, 4.26609e-07, 1.78145, -2.8253)
+transform = Transform3D(-1, -2.41701e-08, 1.49049e-07, 0, 0.987106, 0.160071, -1.50996e-07, 0.160071, -0.987106, 4.26609e-07, 1.78145, -2.8253)
 
 [node name="spring" type="SpringArm3D" parent="carmesh/pivot"]
 unique_name_in_owner = true

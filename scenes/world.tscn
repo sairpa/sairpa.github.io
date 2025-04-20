@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://gwumuaypixsy"]
+
+[ext_resource type="PackedScene" uid="uid://bpl0fnr03csr1" path="res://assets/world.glb" id="1_nnsk1"]
+
+[node name="World" type="Node3D"]
+
+[node name="world" parent="." instance=ExtResource("1_nnsk1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
