@@ -5,7 +5,7 @@ extends RigidBody3D
 
 var sphere_offset = Vector3.DOWN
 var acceleration = 50.0
-var steering = 35
+var steering = 50 # 35
 var turn_speed = 5
 var turn_stop_limit = 2
 var body_tilt = 75
