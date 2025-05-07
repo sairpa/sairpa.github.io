@@ -65,10 +65,17 @@ jobs:
             mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
             sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
             
-            # Create archive
-            cd build
-            zip -r ../web-build-${{ env.COMMIT_HASH }}.zip web/
-            cd ..
+            # List web directory contents for verification
+            echo "Web build directory contents:"
+            ls -la build/web/
+            
+            # Create archive with verbose output
+            echo "Creating web build archive..."
+            zip -rv web-build-${{ env.COMMIT_HASH }}.zip build/web/
+            
+            # Verify the archive was created
+            echo "Checking if archive was created:"
+            ls -la *.zip
           else
             echo "Web export preset not found, skipping..."
           fi
@@ -79,10 +86,17 @@ jobs:
             echo "Building Windows export..."
             godot -v --export-release --headless "Windows Desktop" build/windows/game-${{ env.COMMIT_HASH }}.exe project/project.godot
             
-            # Create archive
-            cd build
-            zip -r ../windows-build-${{ env.COMMIT_HASH }}.zip windows/
-            cd ..
+            # List windows directory contents for verification
+            echo "Windows build directory contents:"
+            ls -la build/windows/
+            
+            # Create archive with verbose output
+            echo "Creating windows build archive..."
+            zip -rv windows-build-${{ env.COMMIT_HASH }}.zip build/windows/
+            
+            # Verify the archive was created
+            echo "Checking if archive was created:"
+            ls -la *.zip
           else
             echo "Windows export preset not found, skipping..."
           fi
@@ -93,10 +107,17 @@ jobs:
             echo "Building Linux export..."
             godot -v --export-release --headless "Linux/X11" build/linux/game-${{ env.COMMIT_HASH }} project/project.godot
             
-            # Create archive
-            cd build
-            zip -r ../linux-build-${{ env.COMMIT_HASH }}.zip linux/
-            cd ..
+            # List linux directory contents for verification
+            echo "Linux build directory contents:"
+            ls -la build/linux/
+            
+            # Create archive with verbose output
+            echo "Creating linux build archive..."
+            zip -rv linux-build-${{ env.COMMIT_HASH }}.zip build/linux/
+            
+            # Verify the archive was created
+            echo "Checking if archive was created:"
+            ls -la *.zip
           else
             echo "Linux export preset not found, skipping..."
           fi
@@ -107,10 +128,17 @@ jobs:
             echo "Building macOS export..."
             godot -v --export-release --headless "macOS" build/mac/game-${{ env.COMMIT_HASH }}.zip project/project.godot
             
-            # Create archive
-            cd build
-            zip -r ../mac-build-${{ env.COMMIT_HASH }}.zip mac/
-            cd ..
+            # List mac directory contents for verification
+            echo "macOS build directory contents:"
+            ls -la build/mac/
+            
+            # Create archive with verbose output
+            echo "Creating macOS build archive..."
+            zip -rv mac-build-${{ env.COMMIT_HASH }}.zip build/mac/
+            
+            # Verify the archive was created
+            echo "Checking if archive was created:"
+            ls -la *.zip
           else
             echo "macOS export preset not found, skipping..."
           fi
@@ -121,10 +149,17 @@ jobs:
             echo "Building Android export..."
             godot -v --export-release --headless "Android" build/android/game-${{ env.COMMIT_HASH }}.apk project/project.godot
             
-            # Create archive
-            cd build
-            zip -r ../android-build-${{ env.COMMIT_HASH }}.zip android/
-            cd ..
+            # List android directory contents for verification
+            echo "Android build directory contents:"
+            ls -la build/android/
+            
+            # Create archive with verbose output
+            echo "Creating android build archive..."
+            zip -rv android-build-${{ env.COMMIT_HASH }}.zip build/android/
+            
+            # Verify the archive was created
+            echo "Checking if archive was created:"
+            ls -la *.zip
           else
             echo "Android export preset not found, skipping..."
           fi
@@ -153,8 +188,47 @@ jobs:
           draft: false
           prerelease: false
       
+      - name: Check build files and upload assets
+        run: |
+          # Create a list of successfully built files
+          echo "Checking for build files..."
+          BUILT_FILES=()
+          
+          # Check each possible build file
+          if [ -f "./web-build-${{ env.COMMIT_HASH }}.zip" ]; then
+            echo "Web build found"
+            BUILT_FILES+=("web")
+          fi
+          
+          if [ -f "./windows-build-${{ env.COMMIT_HASH }}.zip" ]; then
+            echo "Windows build found"
+            BUILT_FILES+=("windows")
+          fi
+          
+          if [ -f "./linux-build-${{ env.COMMIT_HASH }}.zip" ]; then
+            echo "Linux build found"
+            BUILT_FILES+=("linux")
+          fi
+          
+          if [ -f "./mac-build-${{ env.COMMIT_HASH }}.zip" ]; then
+            echo "macOS build found"
+            BUILT_FILES+=("mac")
+          fi
+          
+          if [ -f "./android-build-${{ env.COMMIT_HASH }}.zip" ]; then
+            echo "Android build found"
+            BUILT_FILES+=("android")
+          fi
+          
+          # Save the list as an environment variable
+          echo "BUILT_FILES=${BUILT_FILES[*]}" >> $GITHUB_ENV
+          
+          # Debug: List all files in current directory
+          echo "Files in current directory:"
+          ls -la
+      
       - name: Upload Web Release Asset
-        if: fileExists('./web-build-${{ env.COMMIT_HASH }}.zip')
+        if: contains(env.BUILT_FILES, 'web')
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -165,7 +239,7 @@ jobs:
           asset_content_type: application/zip
       
       - name: Upload Windows Release Asset
-        if: fileExists('./windows-build-${{ env.COMMIT_HASH }}.zip')
+        if: contains(env.BUILT_FILES, 'windows')
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -176,7 +250,7 @@ jobs:
           asset_content_type: application/zip
       
       - name: Upload Linux Release Asset
-        if: fileExists('./linux-build-${{ env.COMMIT_HASH }}.zip')
+        if: contains(env.BUILT_FILES, 'linux')
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -187,7 +261,7 @@ jobs:
           asset_content_type: application/zip
       
       - name: Upload macOS Release Asset
-        if: fileExists('./mac-build-${{ env.COMMIT_HASH }}.zip')
+        if: contains(env.BUILT_FILES, 'mac')
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -198,7 +272,7 @@ jobs:
           asset_content_type: application/zip
       
       - name: Upload Android Release Asset
-        if: fileExists('./android-build-${{ env.COMMIT_HASH }}.zip')
+        if: contains(env.BUILT_FILES, 'android')
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
