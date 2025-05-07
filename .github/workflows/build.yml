@@ -1,4 +1,4 @@
-name: "Build All Platforms and Create Release"
+name: "Publish to GitHub Pages and Create Release"
 env:
   GODOT_VERSION: 4.4
 on:
@@ -22,75 +22,22 @@ jobs:
       - name: Configure Git safe directory
         run: git config --global --add safe.directory "$(pwd)"
           
-      - name: Move export templates into position
+      - name: Move HTML5 templates into position
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       
-      - name: Create build directories
-        run: |
-          mkdir -v -p build/web
-          mkdir -v -p build/windows
-          mkdir -v -p build/linux
-          mkdir -v -p build/mac
-          mkdir -v -p build/android
+      - name: Create staging directory
+        run: mkdir -v -p build/web
       
-      - name: Get export presets
-        id: get_presets
+      - name: Build
+        run: godot -v --export-release --headless "Web" build/web/index.html project/project.godot
+      
+      - name: Add coi-service-worker
         run: |
-          echo "Checking export presets..."
-          
-          # First check if export_presets.cfg exists
-          if [ ! -f "project/export_presets.cfg" ]; then
-            echo "export_presets.cfg not found in project directory!"
-            ls -la project/
-            exit 1
-          fi
-          
-          # Display content of export_presets.cfg for debugging
-          echo "Content of export_presets.cfg:"
-          cat project/export_presets.cfg
-          
-          # Check for each platform type using more robust patterns
-          if grep -q "name=.*[Ww]eb" project/export_presets.cfg; then
-            echo "Web export preset found"
-            echo "HAS_WEB=true" >> $GITHUB_ENV
-          else
-            echo "Web export preset not found"
-            echo "HAS_WEB=false" >> $GITHUB_ENV
-          fi
-          
-          if grep -q "name=.*[Ww]indows" project/export_presets.cfg; then
-            echo "Windows export preset found"
-            echo "HAS_WINDOWS=true" >> $GITHUB_ENV
-          else
-            echo "Windows export preset not found"
-            echo "HAS_WINDOWS=false" >> $GITHUB_ENV
-          fi
-          
-          if grep -q "name=.*[Ll]inux" project/export_presets.cfg; then
-            echo "Linux export preset found"
-            echo "HAS_LINUX=true" >> $GITHUB_ENV
-          else
-            echo "Linux export preset not found"
-            echo "HAS_LINUX=false" >> $GITHUB_ENV
-          fi
-          
-          if grep -q "name=.*[Mm]ac" project/export_presets.cfg; then
-            echo "macOS export preset found"
-            echo "HAS_MAC=true" >> $GITHUB_ENV
-          else
-            echo "macOS export preset not found"
-            echo "HAS_MAC=false" >> $GITHUB_ENV
-          fi
-          
-          if grep -q "name=.*[Aa]ndroid" project/export_presets.cfg; then
-            echo "Android export preset found"
-            echo "HAS_ANDROID=true" >> $GITHUB_ENV
-          else
-            echo "Android export preset not found"
-            echo "HAS_ANDROID=false" >> $GITHUB_ENV
-          fi
+          git clone https://github.com/gzuidhof/coi-serviceworker.git
+          mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
+          sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
       
       - name: Get commit info for release
         id: commit_info
@@ -101,100 +48,10 @@ jobs:
           echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
           echo "RELEASE_TAG=release-$COMMIT_HASH" >> $GITHUB_ENV
       
-      - name: Build Web Export
-        if: env.HAS_WEB == 'true'
+      - name: Create release archive
         run: |
-          echo "Building Web export..."
-          godot -v --export-release --headless "Web" build/web/index.html project/project.godot
-          
-          # Add coi-service-worker
-          git clone https://github.com/gzuidhof/coi-serviceworker.git
-          mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
-          sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
-          
-          # List web directory contents for verification
-          echo "Web build directory contents:"
-          ls -la build/web/
-          
-          # Create archive with verbose output
-          echo "Creating web build archive..."
-          zip -rv web-build-${{ env.COMMIT_HASH }}.zip build/web/
-          
-          # Verify the archive was created
-          echo "Checking if archive was created:"
-          ls -la *.zip
-      
-      - name: Build Windows Export
-        if: env.HAS_WINDOWS == 'true'
-        run: |
-          echo "Building Windows export..."
-          godot -v --export-release --headless "Windows Desktop" build/windows/game-${{ env.COMMIT_HASH }}.exe project/project.godot
-          
-          # List windows directory contents for verification
-          echo "Windows build directory contents:"
-          ls -la build/windows/
-          
-          # Create archive with verbose output
-          echo "Creating windows build archive..."
-          zip -rv windows-build-${{ env.COMMIT_HASH }}.zip build/windows/
-          
-          # Verify the archive was created
-          echo "Checking if archive was created:"
-          ls -la *.zip
-      
-      - name: Build Linux Export
-        if: env.HAS_LINUX == 'true'
-        run: |
-          echo "Building Linux export..."
-          godot -v --export-release --headless "Linux/X11" build/linux/game-${{ env.COMMIT_HASH }} project/project.godot
-          
-          # List linux directory contents for verification
-          echo "Linux build directory contents:"
-          ls -la build/linux/
-          
-          # Create archive with verbose output
-          echo "Creating linux build archive..."
-          zip -rv linux-build-${{ env.COMMIT_HASH }}.zip build/linux/
-          
-          # Verify the archive was created
-          echo "Checking if archive was created:"
-          ls -la *.zip
-      
-      - name: Build macOS Export
-        if: env.HAS_MAC == 'true'
-        run: |
-          echo "Building macOS export..."
-          godot -v --export-release --headless "macOS" build/mac/game-${{ env.COMMIT_HASH }}.zip project/project.godot
-          
-          # List mac directory contents for verification
-          echo "macOS build directory contents:"
-          ls -la build/mac/
-          
-          # Create archive with verbose output
-          echo "Creating macOS build archive..."
-          zip -rv mac-build-${{ env.COMMIT_HASH }}.zip build/mac/
-          
-          # Verify the archive was created
-          echo "Checking if archive was created:"
-          ls -la *.zip
-      
-      - name: Build Android Export
-        if: env.HAS_ANDROID == 'true'
-        run: |
-          echo "Building Android export..."
-          godot -v --export-release --headless "Android" build/android/game-${{ env.COMMIT_HASH }}.apk project/project.godot
-          
-          # List android directory contents for verification
-          echo "Android build directory contents:"
-          ls -la build/android/
-          
-          # Create archive with verbose output
-          echo "Creating android build archive..."
-          zip -rv android-build-${{ env.COMMIT_HASH }}.zip build/android/
-          
-          # Verify the archive was created
-          echo "Checking if archive was created:"
-          ls -la *.zip
+          cd build
+          zip -r ../web-build-${{ env.COMMIT_HASH }}.zip web/
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3.9.3
@@ -220,47 +77,7 @@ jobs:
           draft: false
           prerelease: false
       
-      - name: Check build files and upload assets
-        run: |
-          # Create a list of successfully built files
-          echo "Checking for build files..."
-          BUILT_FILES=()
-          
-          # Check each possible build file
-          if [ -f "./web-build-${{ env.COMMIT_HASH }}.zip" ]; then
-            echo "Web build found"
-            BUILT_FILES+=("web")
-          fi
-          
-          if [ -f "./windows-build-${{ env.COMMIT_HASH }}.zip" ]; then
-            echo "Windows build found"
-            BUILT_FILES+=("windows")
-          fi
-          
-          if [ -f "./linux-build-${{ env.COMMIT_HASH }}.zip" ]; then
-            echo "Linux build found"
-            BUILT_FILES+=("linux")
-          fi
-          
-          if [ -f "./mac-build-${{ env.COMMIT_HASH }}.zip" ]; then
-            echo "macOS build found"
-            BUILT_FILES+=("mac")
-          fi
-          
-          if [ -f "./android-build-${{ env.COMMIT_HASH }}.zip" ]; then
-            echo "Android build found"
-            BUILT_FILES+=("android")
-          fi
-          
-          # Save the list as an environment variable
-          echo "BUILT_FILES=${BUILT_FILES[*]}" >> $GITHUB_ENV
-          
-          # Debug: List all files in current directory
-          echo "Files in current directory:"
-          ls -la
-      
-      - name: Upload Web Release Asset
-        if: contains(env.BUILT_FILES, 'web')
+      - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -268,48 +85,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./web-build-${{ env.COMMIT_HASH }}.zip
           asset_name: web-build-${{ env.COMMIT_HASH }}.zip
-          asset_content_type: application/zip
-      
-      - name: Upload Windows Release Asset
-        if: contains(env.BUILT_FILES, 'windows')
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./windows-build-${{ env.COMMIT_HASH }}.zip
-          asset_name: windows-build-${{ env.COMMIT_HASH }}.zip
-          asset_content_type: application/zip
-      
-      - name: Upload Linux Release Asset
-        if: contains(env.BUILT_FILES, 'linux')
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./linux-build-${{ env.COMMIT_HASH }}.zip
-          asset_name: linux-build-${{ env.COMMIT_HASH }}.zip
-          asset_content_type: application/zip
-      
-      - name: Upload macOS Release Asset
-        if: contains(env.BUILT_FILES, 'mac')
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./mac-build-${{ env.COMMIT_HASH }}.zip
-          asset_name: mac-build-${{ env.COMMIT_HASH }}.zip
-          asset_content_type: application/zip
-      
-      - name: Upload Android Release Asset
-        if: contains(env.BUILT_FILES, 'android')
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./android-build-${{ env.COMMIT_HASH }}.zip
-          asset_name: android-build-${{ env.COMMIT_HASH }}.zip
           asset_content_type: application/zip
