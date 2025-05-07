@@ -22,8 +22,11 @@ jobs:
 
       - name: Setup
         run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mkdir -p ~/.local/share/godot/templates
+          wget -O /tmp/templates.tpz https://godotengine.org/download/archive/4.4.1-stable/Godot_v4.4.1-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/templates/4.4.1.stable
+          tar -xf /tmp/templates.tpz -C ~/.local/share/godot/templates/4.4.1.stable
+          rm /tmp/templates.tpz
           apt-get update && apt-get install -y rsync
       - name: Web Build
         run: |
