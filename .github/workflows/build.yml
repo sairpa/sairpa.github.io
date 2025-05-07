@@ -38,12 +38,59 @@ jobs:
       - name: Get export presets
         id: get_presets
         run: |
-          # Read export presets and extract names
-          PRESETS=$(grep "name=" project/export_presets.cfg | sed 's/name="\(.*\)"/\1/')
-          echo "Found export presets: $PRESETS"
-          echo "PRESETS<<EOF" >> $GITHUB_ENV
-          echo "$PRESETS" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo "Checking export presets..."
+          
+          # First check if export_presets.cfg exists
+          if [ ! -f "project/export_presets.cfg" ]; then
+            echo "export_presets.cfg not found in project directory!"
+            ls -la project/
+            exit 1
+          fi
+          
+          # Display content of export_presets.cfg for debugging
+          echo "Content of export_presets.cfg:"
+          cat project/export_presets.cfg
+          
+          # Check for each platform type using more robust patterns
+          if grep -q "name=.*[Ww]eb" project/export_presets.cfg; then
+            echo "Web export preset found"
+            echo "HAS_WEB=true" >> $GITHUB_ENV
+          else
+            echo "Web export preset not found"
+            echo "HAS_WEB=false" >> $GITHUB_ENV
+          fi
+          
+          if grep -q "name=.*[Ww]indows" project/export_presets.cfg; then
+            echo "Windows export preset found"
+            echo "HAS_WINDOWS=true" >> $GITHUB_ENV
+          else
+            echo "Windows export preset not found"
+            echo "HAS_WINDOWS=false" >> $GITHUB_ENV
+          fi
+          
+          if grep -q "name=.*[Ll]inux" project/export_presets.cfg; then
+            echo "Linux export preset found"
+            echo "HAS_LINUX=true" >> $GITHUB_ENV
+          else
+            echo "Linux export preset not found"
+            echo "HAS_LINUX=false" >> $GITHUB_ENV
+          fi
+          
+          if grep -q "name=.*[Mm]ac" project/export_presets.cfg; then
+            echo "macOS export preset found"
+            echo "HAS_MAC=true" >> $GITHUB_ENV
+          else
+            echo "macOS export preset not found"
+            echo "HAS_MAC=false" >> $GITHUB_ENV
+          fi
+          
+          if grep -q "name=.*[Aa]ndroid" project/export_presets.cfg; then
+            echo "Android export preset found"
+            echo "HAS_ANDROID=true" >> $GITHUB_ENV
+          else
+            echo "Android export preset not found"
+            echo "HAS_ANDROID=false" >> $GITHUB_ENV
+          fi
       
       - name: Get commit info for release
         id: commit_info
@@ -55,114 +102,99 @@ jobs:
           echo "RELEASE_TAG=release-$COMMIT_HASH" >> $GITHUB_ENV
       
       - name: Build Web Export
+        if: env.HAS_WEB == 'true'
         run: |
-          if grep -q "name=\"Web\"" project/export_presets.cfg; then
-            echo "Building Web export..."
-            godot -v --export-release --headless "Web" build/web/index.html project/project.godot
-            
-            # Add coi-service-worker
-            git clone https://github.com/gzuidhof/coi-serviceworker.git
-            mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
-            sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
-            
-            # List web directory contents for verification
-            echo "Web build directory contents:"
-            ls -la build/web/
-            
-            # Create archive with verbose output
-            echo "Creating web build archive..."
-            zip -rv web-build-${{ env.COMMIT_HASH }}.zip build/web/
-            
-            # Verify the archive was created
-            echo "Checking if archive was created:"
-            ls -la *.zip
-          else
-            echo "Web export preset not found, skipping..."
-          fi
+          echo "Building Web export..."
+          godot -v --export-release --headless "Web" build/web/index.html project/project.godot
+          
+          # Add coi-service-worker
+          git clone https://github.com/gzuidhof/coi-serviceworker.git
+          mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
+          sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
+          
+          # List web directory contents for verification
+          echo "Web build directory contents:"
+          ls -la build/web/
+          
+          # Create archive with verbose output
+          echo "Creating web build archive..."
+          zip -rv web-build-${{ env.COMMIT_HASH }}.zip build/web/
+          
+          # Verify the archive was created
+          echo "Checking if archive was created:"
+          ls -la *.zip
       
       - name: Build Windows Export
+        if: env.HAS_WINDOWS == 'true'
         run: |
-          if grep -q "name=\"Windows" project/export_presets.cfg; then
-            echo "Building Windows export..."
-            godot -v --export-release --headless "Windows Desktop" build/windows/game-${{ env.COMMIT_HASH }}.exe project/project.godot
-            
-            # List windows directory contents for verification
-            echo "Windows build directory contents:"
-            ls -la build/windows/
-            
-            # Create archive with verbose output
-            echo "Creating windows build archive..."
-            zip -rv windows-build-${{ env.COMMIT_HASH }}.zip build/windows/
-            
-            # Verify the archive was created
-            echo "Checking if archive was created:"
-            ls -la *.zip
-          else
-            echo "Windows export preset not found, skipping..."
-          fi
+          echo "Building Windows export..."
+          godot -v --export-release --headless "Windows Desktop" build/windows/game-${{ env.COMMIT_HASH }}.exe project/project.godot
+          
+          # List windows directory contents for verification
+          echo "Windows build directory contents:"
+          ls -la build/windows/
+          
+          # Create archive with verbose output
+          echo "Creating windows build archive..."
+          zip -rv windows-build-${{ env.COMMIT_HASH }}.zip build/windows/
+          
+          # Verify the archive was created
+          echo "Checking if archive was created:"
+          ls -la *.zip
       
       - name: Build Linux Export
+        if: env.HAS_LINUX == 'true'
         run: |
-          if grep -q "name=\"Linux" project/export_presets.cfg; then
-            echo "Building Linux export..."
-            godot -v --export-release --headless "Linux/X11" build/linux/game-${{ env.COMMIT_HASH }} project/project.godot
-            
-            # List linux directory contents for verification
-            echo "Linux build directory contents:"
-            ls -la build/linux/
-            
-            # Create archive with verbose output
-            echo "Creating linux build archive..."
-            zip -rv linux-build-${{ env.COMMIT_HASH }}.zip build/linux/
-            
-            # Verify the archive was created
-            echo "Checking if archive was created:"
-            ls -la *.zip
-          else
-            echo "Linux export preset not found, skipping..."
-          fi
+          echo "Building Linux export..."
+          godot -v --export-release --headless "Linux/X11" build/linux/game-${{ env.COMMIT_HASH }} project/project.godot
+          
+          # List linux directory contents for verification
+          echo "Linux build directory contents:"
+          ls -la build/linux/
+          
+          # Create archive with verbose output
+          echo "Creating linux build archive..."
+          zip -rv linux-build-${{ env.COMMIT_HASH }}.zip build/linux/
+          
+          # Verify the archive was created
+          echo "Checking if archive was created:"
+          ls -la *.zip
       
       - name: Build macOS Export
+        if: env.HAS_MAC == 'true'
         run: |
-          if grep -q "name=\"macOS" project/export_presets.cfg; then
-            echo "Building macOS export..."
-            godot -v --export-release --headless "macOS" build/mac/game-${{ env.COMMIT_HASH }}.zip project/project.godot
-            
-            # List mac directory contents for verification
-            echo "macOS build directory contents:"
-            ls -la build/mac/
-            
-            # Create archive with verbose output
-            echo "Creating macOS build archive..."
-            zip -rv mac-build-${{ env.COMMIT_HASH }}.zip build/mac/
-            
-            # Verify the archive was created
-            echo "Checking if archive was created:"
-            ls -la *.zip
-          else
-            echo "macOS export preset not found, skipping..."
-          fi
+          echo "Building macOS export..."
+          godot -v --export-release --headless "macOS" build/mac/game-${{ env.COMMIT_HASH }}.zip project/project.godot
+          
+          # List mac directory contents for verification
+          echo "macOS build directory contents:"
+          ls -la build/mac/
+          
+          # Create archive with verbose output
+          echo "Creating macOS build archive..."
+          zip -rv mac-build-${{ env.COMMIT_HASH }}.zip build/mac/
+          
+          # Verify the archive was created
+          echo "Checking if archive was created:"
+          ls -la *.zip
       
       - name: Build Android Export
+        if: env.HAS_ANDROID == 'true'
         run: |
-          if grep -q "name=\"Android" project/export_presets.cfg; then
-            echo "Building Android export..."
-            godot -v --export-release --headless "Android" build/android/game-${{ env.COMMIT_HASH }}.apk project/project.godot
-            
-            # List android directory contents for verification
-            echo "Android build directory contents:"
-            ls -la build/android/
-            
-            # Create archive with verbose output
-            echo "Creating android build archive..."
-            zip -rv android-build-${{ env.COMMIT_HASH }}.zip build/android/
-            
-            # Verify the archive was created
-            echo "Checking if archive was created:"
-            ls -la *.zip
-          else
-            echo "Android export preset not found, skipping..."
-          fi
+          echo "Building Android export..."
+          godot -v --export-release --headless "Android" build/android/game-${{ env.COMMIT_HASH }}.apk project/project.godot
+          
+          # List android directory contents for verification
+          echo "Android build directory contents:"
+          ls -la build/android/
+          
+          # Create archive with verbose output
+          echo "Creating android build archive..."
+          zip -rv android-build-${{ env.COMMIT_HASH }}.zip build/android/
+          
+          # Verify the archive was created
+          echo "Checking if archive was created:"
+          ls -la *.zip
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3.9.3
