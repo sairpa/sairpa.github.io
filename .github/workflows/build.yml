@@ -1,33 +1,29 @@
-name: godot-ci
+name: action-pipeline
 
 on:
   push:
     branches: [ main ]
   release:
-    types: [published]  # Trigger on new releases
+    types: [published]
 
 env:
   EXPORT_NAME: sairpa
-  GODOT_VERSION: 4.4.1
+  GODOT_VERSION: 4.4
 
 jobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.4.1
+      image: barichello/godot-ci:4.4
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Install rsync
         run: |
-          mkdir -p ~/.local/share/godot/templates
-          wget -O /tmp/templates.tpz https://godotengine.org/download/archive/4.4.1-stable/Godot_v4.4.1-stable_export_templates.tpz
-          mkdir -p ~/.local/share/godot/templates/4.4.1.stable
-          tar -xf /tmp/templates.tpz -C ~/.local/share/godot/templates/4.4.1.stable
-          rm /tmp/templates.tpz
           apt-get update && apt-get install -y rsync
+
       - name: Web Build
         run: |
           cd project
@@ -36,18 +32,18 @@ jobs:
           cd $EXPORT_NAME
           mkdir -v -p build/web
           godot -v --export "HTML5" build/web/index.html
+
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: web
           path: project/${{ env.EXPORT_NAME }}/build/web
 
-  # New job for GitHub Releases
   upload-release:
-    needs: export-web  # Wait for build to complete
+    needs: export-web
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Required for releases
+      contents: write
     
     steps:
       - name: Download Web Build
