@@ -19,6 +19,9 @@ jobs:
         with:
           fetch-depth: 0  # Fetch all history to get commit info
 
+      - name: Configure Git safe directory
+        run: git config --global --add safe.directory "$(pwd)"
+          
       - name: Move HTML5 templates into position
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates
