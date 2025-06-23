@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceon3jc2pu3ie"]
+
+[ext_resource type="Script" uid="uid://dga6rxudylmkc" path="res://scripts/sairpa.gd" id="1_pjodw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11p1x"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pjodw"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjodw"]
+albedo_color = Color(0.931195, 0.522359, 0.156056, 1)
+
+[node name="sairpa" type="CharacterBody3D"]
+script = ExtResource("1_pjodw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_11p1x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_pjodw")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_pjodw")

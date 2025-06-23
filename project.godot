@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="sairpa"
-run/main_scene="uid://cbw0ktwjovvhx"
+run/main_scene="uid://d2lp13jrgy7o1"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://c6xett8dt8146"
