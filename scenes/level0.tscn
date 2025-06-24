@@ -1,55 +1,43 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbw0ktwjovvhx"]
+[gd_scene load_steps=8 format=3 uid="uid://d2lp13jrgy7o1"]
 
-[ext_resource type="PackedScene" uid="uid://cas54o843sd34" path="res://scenes/car.tscn" id="1_4exd7"]
-[ext_resource type="PackedScene" uid="uid://bpl0fnr03csr1" path="res://assets/world.glb" id="1_ic6my"]
+[ext_resource type="PackedScene" uid="uid://ceon3jc2pu3ie" path="res://scenes/sairpa.tscn" id="1_4exd7"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_4exd7"]
-size = Vector2(150, 150)
+[sub_resource type="Environment" id="Environment_g2h75"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4exd7"]
-albedo_color = Color(0, 0.2, 1, 1)
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_wwpf4"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4exd7"]
-size = Vector3(150, 0, 150)
+[sub_resource type="Compositor" id="Compositor_m7ahb"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ic6my"]
-sky_top_color = Color(0.579121, 0.227599, 0, 1)
-sky_horizon_color = Color(0, 0.51882, 0.575604, 1)
-sky_curve = 0.0588439
-ground_bottom_color = Color(0.0522985, 0.13688, 0.153016, 1)
-ground_horizon_color = Color(0.176471, 0.635294, 0.701961, 1)
-ground_curve = 0.0313833
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g2h75"]
 
-[sub_resource type="Sky" id="Sky_ic6my"]
-sky_material = SubResource("ProceduralSkyMaterial_ic6my")
+[sub_resource type="PlaneMesh" id="PlaneMesh_3g4x6"]
+size = Vector2(20, 20)
 
-[sub_resource type="Environment" id="Environment_qsrgx"]
-background_mode = 2
-sky = SubResource("Sky_ic6my")
-tonemap_mode = 2
-glow_enabled = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2h75"]
+albedo_color = Color(0, 0.592099, 0.972842, 1)
 
-[node name="Level0" type="Node3D"]
-
-[node name="world" parent="." instance=ExtResource("1_ic6my")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.000998497, -9.9679, -0.00863266)
-
-[node name="Ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, -9.70074, 0)
-mesh = SubResource("PlaneMesh_4exd7")
-skeleton = NodePath("StaticBody3D")
-surface_material_override/0 = SubResource("StandardMaterial3D_4exd7")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
-shape = SubResource("BoxShape3D_4exd7")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0)
-shadow_enabled = true
+[node name="Level1" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_qsrgx")
+environment = SubResource("Environment_g2h75")
+camera_attributes = SubResource("CameraAttributesPractical_wwpf4")
+compositor = SubResource("Compositor_m7ahb")
 
-[node name="swift_sport" parent="." instance=ExtResource("1_4exd7")]
+[node name="sairpa" parent="." instance=ExtResource("1_4exd7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.691033, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.87112, 0.491071, 0, -0.491071, 0.87112, 0, 2.11485, 3.07183)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.00563733, 0.999984, 0, -0.999984, 0.00563733, 0, 3.53286, 0)
+
+[node name="Plane" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane"]
+shape = SubResource("WorldBoundaryShape3D_g2h75")
+
+[node name="PlaMeshne" type="MeshInstance3D" parent="Plane"]
+mesh = SubResource("PlaneMesh_3g4x6")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_g2h75")
