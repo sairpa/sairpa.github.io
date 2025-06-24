@@ -1,3 +1,116 @@
-[gd_scene format=3 uid="uid://bfjap8njtuoit"]
+[gd_scene load_steps=8 format=3 uid="uid://4xrq8e7vur4r"]
 
-[node name="Portfolio Page" type="Node3D"]
+[ext_resource type="Script" uid="uid://tggya0y8cakq" path="res://scripts/menu.gd" id="1_g3eks"]
+[ext_resource type="Texture2D" uid="uid://d32pljik6tj3r" path="res://assets/Textures/pranav-ajay-noxp.jpg" id="1_yqeox"]
+[ext_resource type="StyleBox" uid="uid://d2kvemn5hqdux" path="res://assets/tres/button_hover.tres" id="2_con2f"]
+[ext_resource type="StyleBox" uid="uid://bflv5f5prvfwr" path="res://assets/tres/button.tres" id="3_con2f"]
+[ext_resource type="StyleBox" uid="uid://dayvg6e30u0k" path="res://assets/tres/button_pressed.tres" id="3_mhnvy"]
+[ext_resource type="FontFile" uid="uid://dc7wrfgdv1vcv" path="res://assets/fonts/GrapeSoda.ttf" id="5_4ytvr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vjb58"]
+texture = ExtResource("1_yqeox")
+modulate_color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[node name="Portfolio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g3eks")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -574.5
+offset_top = -325.0
+offset_right = 574.5
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vjb58")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -54.0
+offset_right = 87.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="about_me" type="Button" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.701961, 0.333333, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.984314, 0.682353, 0.290196, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = ExtResource("2_con2f")
+theme_override_styles/pressed = ExtResource("3_mhnvy")
+theme_override_styles/normal = ExtResource("3_con2f")
+text = "About Me"
+
+[node name="experiences" type="Button" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = ExtResource("2_con2f")
+theme_override_styles/pressed = ExtResource("3_mhnvy")
+theme_override_styles/normal = ExtResource("3_con2f")
+text = "Experience"
+
+[node name="projects" type="Button" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = ExtResource("2_con2f")
+theme_override_styles/pressed = ExtResource("3_mhnvy")
+theme_override_styles/normal = ExtResource("3_con2f")
+text = "Projects"
+
+[node name="education" type="Button" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = ExtResource("2_con2f")
+theme_override_styles/pressed = ExtResource("3_mhnvy")
+theme_override_styles/normal = ExtResource("3_con2f")
+text = "Education"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -3.0
+offset_top = 104.0
+offset_right = -3.0
+offset_bottom = 236.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.980523, 0.55056, 7.70092e-07, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("5_4ytvr")
+theme_override_font_sizes/normal_font_size = 65
+text = "Hi!!! 👋
+I am Pranav Ajay"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Container/about_me" to="." method="_on_about_me_pressed"]
+[connection signal="pressed" from="Container/experiences" to="." method="_on_experiences_pressed"]
+[connection signal="pressed" from="Container/projects" to="." method="_on_projects_pressed"]
+[connection signal="pressed" from="Container/education" to="." method="_on_education_pressed"]

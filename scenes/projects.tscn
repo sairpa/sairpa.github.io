@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2lp13jrgy7o1"]
+[gd_scene load_steps=8 format=3 uid="uid://dh8i0kiegaf2q"]
 
-[ext_resource type="PackedScene" uid="uid://ceon3jc2pu3ie" path="res://scenes/sairpa.tscn" id="1_4exd7"]
+[ext_resource type="PackedScene" uid="uid://ceon3jc2pu3ie" path="res://scenes/sairpa.tscn" id="1_d6fun"]
 
 [sub_resource type="Environment" id="Environment_g2h75"]
 
@@ -14,7 +14,7 @@
 size = Vector2(20, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2h75"]
-albedo_color = Color(0, 0.592099, 0.972842, 1)
+albedo_color = Color(0.49547, 0.502298, 1, 1)
 
 [node name="Level1" type="Node3D"]
 
@@ -23,7 +23,7 @@ environment = SubResource("Environment_g2h75")
 camera_attributes = SubResource("CameraAttributesPractical_wwpf4")
 compositor = SubResource("Compositor_m7ahb")
 
-[node name="sairpa" parent="." instance=ExtResource("1_4exd7")]
+[node name="sairpa" parent="." instance=ExtResource("1_d6fun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.691033, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]

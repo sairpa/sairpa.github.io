@@ -1,0 +1,27 @@
+extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_about_me_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/about_me.tscn")
+
+
+func _on_experiences_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/experiences.tscn")
+
+
+func _on_projects_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/projects.tscn")
+
+
+func _on_education_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/education.tscn")
