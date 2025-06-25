@@ -1,6 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh8i0kiegaf2q"]
+[gd_scene load_steps=12 format=3 uid="uid://dh8i0kiegaf2q"]
 
+[ext_resource type="Script" uid="uid://dba6pbjixi0kt" path="res://scripts/projects.gd" id="1_7mfu5"]
 [ext_resource type="PackedScene" uid="uid://ceon3jc2pu3ie" path="res://scenes/sairpa.tscn" id="1_d6fun"]
+[ext_resource type="StyleBox" uid="uid://d2kvemn5hqdux" path="res://assets/tres/button_hover.tres" id="3_elp5x"]
+[ext_resource type="StyleBox" uid="uid://dayvg6e30u0k" path="res://assets/tres/button_pressed.tres" id="4_phygx"]
+[ext_resource type="StyleBox" uid="uid://bflv5f5prvfwr" path="res://assets/tres/button.tres" id="5_03i5a"]
 
 [sub_resource type="Environment" id="Environment_g2h75"]
 
@@ -16,7 +20,8 @@ size = Vector2(20, 20)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2h75"]
 albedo_color = Color(0.49547, 0.502298, 1, 1)
 
-[node name="Level1" type="Node3D"]
+[node name="projects" type="Node3D"]
+script = ExtResource("1_7mfu5")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_g2h75")
@@ -41,3 +46,16 @@ shape = SubResource("WorldBoundaryShape3D_g2h75")
 mesh = SubResource("PlaneMesh_3g4x6")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_g2h75")
+
+[node name="menu" type="Button" parent="."]
+offset_left = 58.0
+offset_top = 43.0
+offset_right = 66.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/hover = ExtResource("3_elp5x")
+theme_override_styles/pressed = ExtResource("4_phygx")
+theme_override_styles/normal = ExtResource("5_03i5a")
+text = "Back to menu 🔙"
+
+[connection signal="pressed" from="menu" to="." method="_on_menu_pressed"]
