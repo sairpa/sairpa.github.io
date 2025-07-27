@@ -6,13 +6,13 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75mph"]
 resource_name = "block_base_color"
 cull_mode = 2
-albedo_color = Color(1, 0.584438, 0, 1)
+albedo_color = Color(0.470531, 0.28535, 1.92523e-07, 1)
 metallic = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ft08"]
 resource_name = "block_base_color-bumpy"
 cull_mode = 2
-albedo_color = Color(1, 0.466923, 0.0443263, 1)
+albedo_color = Color(0.239931, 0.302251, 0.224226, 1)
 metallic_texture = ExtResource("1_dgkrq")
 metallic_texture_channel = 2
 roughness_texture = ExtResource("1_dgkrq")
