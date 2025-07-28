@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpmus3qhv1wsx"]
+
+[ext_resource type="PackedScene" uid="uid://g8ul2a6x3ukx" path="res://scenes/tintu.tscn" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cwf4abhdf7upo" path="res://scenes/player.gd" id="1_g2els"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+radius = 0.375691
+height = 1.79377
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_g2els")
+
+[node name="tintu" parent="." instance=ExtResource("1_3vyb7")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.854756, 0)
+shape = SubResource("CapsuleShape3D_3vyb7")

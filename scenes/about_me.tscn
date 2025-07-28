@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2lp13jrgy7o1"]
+[gd_scene load_steps=11 format=3 uid="uid://d2lp13jrgy7o1"]
 
 [ext_resource type="Script" uid="uid://hmtu8wuf4pyi" path="res://scripts/about_me.gd" id="1_304gd"]
 [ext_resource type="StyleBox" uid="uid://d2kvemn5hqdux" path="res://assets/tres/button_hover.tres" id="2_1wj78"]
 [ext_resource type="StyleBox" uid="uid://dayvg6e30u0k" path="res://assets/tres/button_pressed.tres" id="3_304gd"]
 [ext_resource type="StyleBox" uid="uid://bflv5f5prvfwr" path="res://assets/tres/button.tres" id="4_8hopj"]
 [ext_resource type="MeshLibrary" uid="uid://bm3i6o5se6g76" path="res://assets/tres/gridmap_blocks.tres" id="5_304gd"]
-[ext_resource type="PackedScene" uid="uid://g8ul2a6x3ukx" path="res://scenes/high_poly_me.tscn" id="6_8hopj"]
+[ext_resource type="PackedScene" uid="uid://bpmus3qhv1wsx" path="res://scenes/player.tscn" id="6_8hopj"]
+[ext_resource type="PackedScene" uid="uid://ihmakdre32pe" path="res://scenes/handcamera.tscn" id="7_erg26"]
 
 [sub_resource type="Environment" id="Environment_g2h75"]
 
@@ -22,7 +23,7 @@ camera_attributes = SubResource("CameraAttributesPractical_wwpf4")
 compositor = SubResource("Compositor_m7ahb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.00563733, 0.999984, 0, -0.999984, 0.00563733, 0, 3.53286, 0)
+transform = Transform3D(1, 0, 0, 0, 0.00563733, 0.999984, 0, -0.999984, 0.00563733, 0, 40.3633, 0)
 
 [node name="menu_button" type="Button" parent="."]
 offset_left = 58.0
@@ -44,7 +45,11 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="high_poly_me" parent="." instance=ExtResource("6_8hopj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.321, 14.2)
+[node name="Player" parent="." instance=ExtResource("6_8hopj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.270247, 36.8629, 10.3157)
+
+[node name="HandCamera" parent="." instance=ExtResource("7_erg26")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 36.81, 2.363)
+fov = 69.9
 
 [connection signal="pressed" from="menu_button" to="." method="_on_menu_pressed"]
