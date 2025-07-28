@@ -3,4 +3,6 @@
 /android/
 */*.tmp
 build
-assets/*.blend*
+assets/models/*.blend*
+assets/**/*.import
+assets/**/*.import.*
