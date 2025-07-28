@@ -4,5 +4,7 @@
 */*.tmp
 build
 assets/models/*.blend*
+*.blend
+*.blend1
 assets/**/*.import
 assets/**/*.import.*
