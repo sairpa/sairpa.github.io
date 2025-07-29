@@ -43,7 +43,7 @@ jobs:
         id: commit_info
         run: |
           COMMIT_HASH=$(git rev-parse --short HEAD)
-          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ')
           echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
           echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
           echo "RELEASE_TAG=release-$COMMIT_HASH" >> $GITHUB_ENV
