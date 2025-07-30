@@ -3,6 +3,11 @@ env:
   GODOT_VERSION: 4.4
 on:
   workflow_dispatch:
+    inputs:
+      enable_release:
+        description: 'Enable GitHub Release'
+        required: false
+        default: 'false'
   push:
     branches:
       - main
@@ -19,6 +24,11 @@ jobs:
         with:
           fetch-depth: 0  # Fetch all history to get commit info
 
+      - name: Read release config
+        id: release_config
+        run: |
+          ENABLE_RELEASE=$(jq -r .enable_release release_config.json)
+          echo "ENABLE_RELEASE=$ENABLE_RELEASE" >> $GITHUB_ENV
       - name: Configure Git safe directory
         run: git config --global --add safe.directory "$(pwd)"
           
@@ -64,6 +74,7 @@ jobs:
           commit_message: "Publish to gh-pages"
       
       - name: Create GitHub Release
+        if: ${{ env.ENABLE_RELEASE == 'true' }}
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -78,6 +89,7 @@ jobs:
           prerelease: false
       
       - name: Upload Release Asset
+        if: ${{ env.ENABLE_RELEASE == 'true' }}
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
