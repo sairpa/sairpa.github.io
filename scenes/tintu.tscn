@@ -1,52 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://g8ul2a6x3ukx"]
+[gd_scene load_steps=3 format=3 uid="uid://dxaf2rw2cx8vp"]
 
-[ext_resource type="PackedScene" uid="uid://d0inchme4bhir" path="res://assets/models/high_poly_me.glb" id="1_pb08y"]
+[ext_resource type="PackedScene" uid="uid://dfdjrm8m8fusp" path="res://assets/exports/high_poly_me.glb" id="1_pb08y"]
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_pb08y"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pb08y"]
-animation = &"jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7l0ij"]
-animation = &"jump"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_7l0ij"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_pb08y")
-blend_point_0/pos = -0.9
-blend_point_1/node = SubResource("AnimationNodeAnimation_7l0ij")
-blend_point_1/pos = 1.0
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_0engr"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hcf63"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gv47g"]
-animation = &"jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2vbgc"]
-animation = &"run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fv2mm"]
-animation = &"turn_back"
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_oru7r"]
-graph_offset = Vector2(-486.779, 166.374)
-nodes/BlendAirlanding/node = SubResource("AnimationNodeBlend2_pb08y")
-nodes/BlendAirlanding/position = Vector2(-80, 140)
-nodes/BlendFallJump/node = SubResource("AnimationNodeBlendSpace1D_7l0ij")
-nodes/BlendFallJump/position = Vector2(-460, 420)
-nodes/BlendIdleWalking/node = SubResource("AnimationNodeBlend2_0engr")
-nodes/BlendIdleWalking/position = Vector2(-460, 140)
-nodes/idle/node = SubResource("AnimationNodeAnimation_hcf63")
-nodes/idle/position = Vector2(-820, 0)
-nodes/jump/node = SubResource("AnimationNodeAnimation_gv47g")
-nodes/jump/position = Vector2(-820, 560)
-nodes/run/node = SubResource("AnimationNodeAnimation_2vbgc")
-nodes/run/position = Vector2(-820, 180)
-nodes/turn/node = SubResource("AnimationNodeAnimation_fv2mm")
-nodes/turn/position = Vector2(-823.756, 365.089)
-node_connections = [&"BlendAirlanding", 0, &"BlendIdleWalking", &"BlendAirlanding", 1, &"BlendFallJump", &"BlendIdleWalking", 0, &"idle", &"BlendIdleWalking", 1, &"run"]
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pb08y"]
 
 [node name="tintu" instance=ExtResource("1_pb08y")]
 
@@ -153,8 +109,5 @@ bones/63/rotation = Quaternion(0.378116, 0.033524, -0.00934386, 0.925104)
 autoplay = "run"
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
-tree_root = SubResource("AnimationNodeBlendTree_oru7r")
+tree_root = SubResource("AnimationNodeBlendTree_pb08y")
 anim_player = NodePath("../AnimationPlayer")
-parameters/BlendAirlanding/blend_amount = 0
-parameters/BlendFallJump/blend_position = 1.0
-parameters/BlendIdleWalking/blend_amount = 0
