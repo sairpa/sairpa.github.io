@@ -24,6 +24,9 @@ jobs:
         with:
           fetch-depth: 0  # Fetch all history to get commit info
 
+      - name: Install jq
+        run: apt-get update && apt-get install -y jq
+
       - name: Read release config
         id: release_config
         run: |
