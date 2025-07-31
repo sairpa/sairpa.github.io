@@ -1,7 +1,7 @@
 [gd_resource type="MeshLibrary" load_steps=40 format=4 uid="uid://bm3i6o5se6g76"]
 
-[ext_resource type="Texture2D" uid="uid://bfaa35iptm3x7" path="res://assets/models/grid_map_tiles_Tiles035_1K-JPG_Roughness.png" id="1_dgkrq"]
-[ext_resource type="Texture2D" uid="uid://dj8qg065l52v5" path="res://assets/models/grid_map_tiles_Tiles035_1K-JPG_NormalGL (Custom).jpg" id="2_e54g3"]
+[ext_resource type="Texture2D" uid="uid://ct3k7rt1cm055" path="res://assets/models/grid_map_tiles_Tiles035_1K-JPG_Roughness.png" id="1_dgkrq"]
+[ext_resource type="Texture2D" uid="uid://550tnykluqig" path="res://assets/models/grid_map_tiles_Tiles035_1K-JPG_NormalGL (Custom).jpg" id="2_e54g3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75mph"]
 resource_name = "block_base_color"
