@@ -10,7 +10,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
 
 func _on_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")

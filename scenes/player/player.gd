@@ -8,7 +8,12 @@ extends CharacterBody3D
 
 var jumping:bool = false
 var running:bool = false
-#var walking:bool = true
+
+
+
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
 
 func _physics_process(delta: float) -> void:
 	var move_direction = Vector3.ZERO
