@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ihmakdre32pe"]
 
-[ext_resource type="Script" uid="uid://br5xnnfh4x67i" path="res://scripts/hand_camera.gd" id="1_xiddh"]
+[ext_resource type="Script" uid="uid://br5xnnfh4x67i" path="res://scenes/cam/hand_camera.gd" id="1_xiddh"]
 
 [node name="HandCamera" type="Camera3D"]
 script = ExtResource("1_xiddh")

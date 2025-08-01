@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ubc15stikklr"]
+[gd_scene load_steps=5 format=3 uid="uid://ubc15stikklr"]
 
-[ext_resource type="PackedScene" uid="uid://bpmus3qhv1wsx" path="res://scenes/player.tscn" id="1_lq1eq"]
-[ext_resource type="PackedScene" uid="uid://ihmakdre32pe" path="res://scenes/handcamera.tscn" id="2_6nsdx"]
+[ext_resource type="PackedScene" uid="uid://ihmakdre32pe" path="res://scenes/cam/handcamera.tscn" id="1_u701o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5tdcs"]
 sky_top_color = Color(0.629163, 0.384764, 2.88785e-07, 1)
@@ -30,8 +29,5 @@ shadow_enabled = true
 use_collision = true
 size = Vector3(50, 0.01, 50)
 
-[node name="Player" parent="." instance=ExtResource("1_lq1eq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.16333, 0)
-
-[node name="HandCamera" parent="." instance=ExtResource("2_6nsdx")]
+[node name="HandCamera" parent="." instance=ExtResource("1_u701o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54439, 2.36257)

@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="sairpa"
-run/main_scene="uid://ubc15stikklr"
+run/main_scene="uid://4xrq8e7vur4r"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/image="uid://c6xett8dt8146"
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [display]
 
