@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+@onready var animation_tree: AnimationTree = $AnimationTree
+
+@export var blendSpeed: float = 5.0
 @export var gravity: float = -300.0
 @export var rotation_speed: float = 20.0
 @export var run_speed:float = 30
@@ -9,6 +12,7 @@ extends CharacterBody3D
 var jumping:bool = false
 var running:bool = false
 
+var currentIdleBlend:float = 0.0
 
 
 func _unhandled_input(event):
@@ -44,4 +48,10 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.y += gravity * delta
 			
-	move_and_slide()	
+	move_and_slide()
+	
+
+func blendIdleWalk(delta:float) -> void:
+	var targetSpeed = clamp(velocity.length()/ run_speed, 0.0, 1.0)
+	currentIdleBlend = lerp(currentIdleBlend,targetSpeed,blendSpeed*delta)
+	animation_tree.set("", currentIdleBlend)

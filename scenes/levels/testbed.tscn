@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ubc15stikklr"]
+[gd_scene load_steps=6 format=3 uid="uid://ubc15stikklr"]
 
-[ext_resource type="PackedScene" uid="uid://ihmakdre32pe" path="res://scenes/cam/handcamera.tscn" id="1_u701o"]
+[ext_resource type="PackedScene" uid="uid://ihmakdre32pe" path="res://scenes/cam/HandCamera/hand_camera.tscn" id="1_u701o"]
+[ext_resource type="PackedScene" uid="uid://c1he3dit48wyi" path="res://scenes/player/tintu.tscn" id="2_u7it8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5tdcs"]
 sky_top_color = Color(0.629163, 0.384764, 2.88785e-07, 1)
@@ -29,5 +30,9 @@ shadow_enabled = true
 use_collision = true
 size = Vector3(50, 0.01, 50)
 
+[node name="tintu" parent="." instance=ExtResource("2_u7it8")]
+transform = Transform3D(0.999742, 0, 0.0227048, 0, 1, 0, -0.0227048, 0, 0.999742, 7.45058e-09, 21.4219, -0.835091)
+
 [node name="HandCamera" parent="." instance=ExtResource("1_u701o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54439, 2.36257)
+transform = Transform3D(0.999742, 0, 0.0227048, 0, 1, 0, -0.0227048, 0, 0.999742, 0, 1.30834, 3.20423)
+orbit_speed = 20.0
