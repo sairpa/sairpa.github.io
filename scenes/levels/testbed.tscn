@@ -33,6 +33,7 @@ size = Vector3(50, 0.01, 50)
 [node name="tintu" parent="." instance=ExtResource("2_u7it8")]
 transform = Transform3D(0.999742, 0, 0.0227048, 0, 1, 0, -0.0227048, 0, 0.999742, 7.45058e-09, 21.4219, -0.835091)
 
-[node name="HandCamera" parent="." instance=ExtResource("1_u701o")]
+[node name="HandCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_u701o")]
 transform = Transform3D(0.999742, 0, 0.0227048, 0, 1, 0, -0.0227048, 0, 0.999742, 0, 1.30834, 3.20423)
-orbit_speed = 20.0
+target = NodePath("../tintu")
+orbit_speed = 5.0

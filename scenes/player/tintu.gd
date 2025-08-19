@@ -2,11 +2,11 @@ extends CharacterBody3D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 
-@export var blendSpeed: float = 5.0
+@export var blendSpeed: float = 1
 @export var gravity: float = -300.0
-@export var rotation_speed: float = 20.0
-@export var run_speed:float = 30
-@export var jump_velocity:float = 7
+@export var rotation_speed: float = 10
+@export var run_speed:float = 10
+@export var jump_velocity:float = 5
 #@onready var animp = $tintu/AnimationPlayer
 
 var jumping:bool = false

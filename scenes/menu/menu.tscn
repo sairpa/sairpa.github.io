@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://4xrq8e7vur4r"]
 
 [ext_resource type="Script" uid="uid://tggya0y8cakq" path="res://scenes/menu/menu.gd" id="1_g3eks"]
-[ext_resource type="Texture2D" uid="uid://crxmt40iobpbv" path="res://assets/textures/pranav-ajay-noxp.jpg" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://rksesm4aas2t" path="res://assets/textures/pranav-ajay-noxp.jpg" id="1_yqeox"]
 [ext_resource type="StyleBox" uid="uid://d2kvemn5hqdux" path="res://assets/tres/button_hover.tres" id="2_con2f"]
 [ext_resource type="StyleBox" uid="uid://bflv5f5prvfwr" path="res://assets/tres/button.tres" id="3_con2f"]
 [ext_resource type="StyleBox" uid="uid://dayvg6e30u0k" path="res://assets/tres/button_pressed.tres" id="3_mhnvy"]
-[ext_resource type="FontFile" uid="uid://chwalhuasbksy" path="res://assets/fonts/GrapeSoda.ttf" id="5_4ytvr"]
+[ext_resource type="FontFile" uid="uid://doyydrcw3wxpr" path="res://assets/fonts/GrapeSoda.ttf" id="5_4ytvr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vjb58"]
 texture = ExtResource("1_yqeox")
