@@ -1,21 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://4xrq8e7vur4r"]
+[gd_scene format=3 uid="uid://4xrq8e7vur4r"]
 
 [ext_resource type="Script" uid="uid://tggya0y8cakq" path="res://scenes/menu/menu.gd" id="1_g3eks"]
-[ext_resource type="Texture2D" uid="uid://rksesm4aas2t" path="res://assets/textures/pranav-ajay-noxp.jpg" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://wn2htxsty4ct" path="res://assets/textures/pranav-ajay-noxp.jpg" id="1_yqeox"]
 [ext_resource type="StyleBox" uid="uid://d2kvemn5hqdux" path="res://assets/tres/button_hover.tres" id="2_con2f"]
 [ext_resource type="StyleBox" uid="uid://bflv5f5prvfwr" path="res://assets/tres/button.tres" id="3_con2f"]
 [ext_resource type="StyleBox" uid="uid://dayvg6e30u0k" path="res://assets/tres/button_pressed.tres" id="3_mhnvy"]
-[ext_resource type="FontFile" uid="uid://doyydrcw3wxpr" path="res://assets/fonts/GrapeSoda.ttf" id="5_4ytvr"]
+[ext_resource type="FontFile" uid="uid://dq7h6u3e5vbau" path="res://assets/fonts/GrapeSoda.ttf" id="5_4ytvr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vjb58"]
 texture = ExtResource("1_yqeox")
-expand_margin_left = 100.0
-expand_margin_top = 100.0
-expand_margin_right = 100.0
-expand_margin_bottom = 100.0
 modulate_color = Color(0.439049, 0.439049, 0.439049, 1)
 
-[node name="Portfolio" type="Control"]
+[node name="Portfolio" type="Control" unique_id=1405877846]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g3eks")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=399664633]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,9 +29,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_vjb58")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1725795838]
 
-[node name="Container" type="VBoxContainer" parent="CanvasLayer"]
+[node name="Container" type="VBoxContainer" parent="CanvasLayer" unique_id=1668758851]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -48,7 +44,7 @@ offset_bottom = 164.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Container"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Container" unique_id=1095203352]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.980523, 0.55056, 7.70092e-07, 1)
 theme_override_constants/shadow_offset_y = 2
@@ -60,16 +56,16 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="about_me" type="Button" parent="CanvasLayer/Container"]
+[node name="about_me" type="Button" parent="CanvasLayer/Container" unique_id=1675704635]
 layout_mode = 2
 size_flags_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0.988235, 0.701961, 0.333333, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.984314, 0.682353, 0.290196, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
-theme_override_styles/hover = ExtResource("2_con2f")
-theme_override_styles/pressed = ExtResource("3_mhnvy")
 theme_override_styles/normal = ExtResource("3_con2f")
+theme_override_styles/pressed = ExtResource("3_mhnvy")
+theme_override_styles/hover = ExtResource("2_con2f")
 text = "About Me"
 
 [connection signal="pressed" from="CanvasLayer/Container/about_me" to="." method="_on_about_me_pressed"]

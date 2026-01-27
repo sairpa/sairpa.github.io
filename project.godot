@@ -8,13 +8,17 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="sairpa"
 run/main_scene="uid://4xrq8e7vur4r"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/show_image=false
-boot_splash/fullsize=false
+boot_splash/stretch_mode=0
 boot_splash/use_filter=false
 boot_splash/image="uid://c6xett8dt8146"
 config/icon="res://assets/icon.svg"
