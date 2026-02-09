@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://ihmakdre32pe"]
-
-[ext_resource type="Script" uid="uid://cktkgsb5rjljy" path="res://scenes/cam/HandCamera/hand_camera.gd" id="1_xiddh"]
-
-[node name="HandCamera" type="Camera3D" unique_id=388352113]
-script = ExtResource("1_xiddh")
