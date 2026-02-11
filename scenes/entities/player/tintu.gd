@@ -42,12 +42,12 @@ func movement_loop() -> void:
 		state = State.IDLE
 		update_animation()
 	
-	#if Input.is_action_pressed("jump"):
-		#state = State.JUMP
-		#update_animation()
-	#else:
-		#state = State.IDLE
-		#update_animation()
+	if Input.is_action_pressed("jump"):
+		state = State.JUMP
+		update_animation()
+	else:
+		state = State.IDLE
+		update_animation()
 
 func update_animation() -> void:
 	match state:
