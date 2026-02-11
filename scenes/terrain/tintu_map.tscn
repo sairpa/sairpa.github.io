@@ -68,4 +68,4 @@ tile_map_data = PackedByteArray("AAD4/wgAAAAGAAMAAAD5/wgAAAAGAAMAAAD6/wgAAAAGAAM
 tile_set = SubResource("TileSet_shewi")
 
 [node name="tintu" parent="." unique_id=1864312956 instance=ExtResource("2_shewi")]
-position = Vector2(1042, -982)
+position = Vector2(1042, -981)

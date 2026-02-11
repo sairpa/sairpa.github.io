@@ -11,12 +11,11 @@ config_version=5
 [application]
 
 config/name="sairpa"
-run/main_scene="uid://gt1lm7ebo6hq"
+run/main_scene="uid://l3l16bpskw3i"
 config/features=PackedStringArray("4.6", "Mobile")
-boot_splash/show_image=false
-boot_splash/stretch_mode=0
-boot_splash/use_filter=false
-boot_splash/image="uid://c6xett8dt8146"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/stretch_mode=4
+boot_splash/image="uid://ctauv5v3set1f"
 config/icon="res://assets/icon.svg"
 
 [display]
