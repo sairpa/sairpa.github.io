@@ -26,27 +26,11 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_7brhh")
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="." unique_id=582557963]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.47827774
-anchor_top = 0.47777778
-anchor_right = 0.6955004
-anchor_bottom = 0.69305557
-offset_left = -35.5
-offset_top = -16.0
-offset_right = -188.5
-offset_bottom = -108.00003
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-theme_override_colors/font_hover_color = Color(0.9685572, 0.6798046, 0, 1)
-theme_override_colors/font_outline_color = Color(0.41875252, 0.6351725, 1, 1)
-theme_override_font_sizes/font_size = 40
-button_mask = 7
-text = "START"
-flat = true
-icon_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1744529363]
+layout_mode = 0
+offset_left = 581.0
+offset_top = 317.7933
+offset_right = 621.0
+offset_bottom = 357.7933
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]

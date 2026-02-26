@@ -11,5 +11,5 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_button_pressed() -> void:
+func _on_texture_button_button_up() -> void:
 	get_tree().change_scene_to_file("res://scenes/levels/tintu_map.tscn")
