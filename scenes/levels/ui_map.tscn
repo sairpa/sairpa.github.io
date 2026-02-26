@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://c725ol2t116hg"]
+
+[ext_resource type="Texture2D" uid="uid://djl28itmavbef" path="res://assets/images/NoXP.png" id="1_1t1eg"]
+[ext_resource type="Script" uid="uid://ch0xvx44tt4q" path="res://scenes/entities/ui/main_menu_ui.gd" id="1_7brhh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7brhh"]
+texture = ExtResource("1_1t1eg")
+modulate_color = Color(0.20080861, 0.20080861, 0.20080861, 1)
+
+[node name="UiMap" type="Control" unique_id=1041018326]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7brhh")
+
+[node name="Panel" type="Panel" parent="." unique_id=2017615675]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7brhh")
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="." unique_id=582557963]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47827774
+anchor_top = 0.47777778
+anchor_right = 0.6955004
+anchor_bottom = 0.69305557
+offset_left = -35.5
+offset_top = -16.0
+offset_right = -188.5
+offset_bottom = -108.00003
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(0.9685572, 0.6798046, 0, 1)
+theme_override_colors/font_outline_color = Color(0.41875252, 0.6351725, 1, 1)
+theme_override_font_sizes/font_size = 40
+button_mask = 7
+text = "START"
+flat = true
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

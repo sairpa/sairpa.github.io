@@ -1,12 +1,12 @@
-[gd_scene format=4 uid="uid://l3l16bpskw3i"]
+[gd_scene format=4 uid="uid://b8igg7fe76qml"]
 
-[ext_resource type="Texture2D" uid="uid://pk3041tfj1l4" path="res://assets/spritesheets/allTiles_sheet.png" id="1_ksmjl"]
-[ext_resource type="Texture2D" uid="uid://cgcoo5ek2fsnd" path="res://assets/spritesheets/House1.png" id="2_bhjkn"]
-[ext_resource type="PackedScene" uid="uid://gt1lm7ebo6hq" path="res://scenes/entities/player/tintu.tscn" id="2_shewi"]
-[ext_resource type="Texture2D" uid="uid://nejnuami6x0q" path="res://assets/spritesheets/House2.png" id="3_2njdh"]
+[ext_resource type="Texture2D" uid="uid://bfpxyya6htdym" path="res://assets/spritesheets/allTiles_sheet.png" id="1_73n5n"]
+[ext_resource type="Texture2D" uid="uid://cgcoo5ek2fsnd" path="res://assets/spritesheets/House1.png" id="2_bk8o6"]
+[ext_resource type="Texture2D" uid="uid://nejnuami6x0q" path="res://assets/spritesheets/House2.png" id="3_b851e"]
+[ext_resource type="PackedScene" uid="uid://gt1lm7ebo6hq" path="res://scenes/entities/player/tintu.tscn" id="4_it8ar"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_shewi"]
-texture = ExtResource("1_ksmjl")
+texture = ExtResource("1_73n5n")
 texture_region_size = Vector2i(112, 129)
 8:7/0 = 0
 8:7/0/texture_origin = Vector2i(0, -32)
@@ -22,7 +22,7 @@ tile_size = Vector2i(111, 64)
 sources/3 = SubResource("TileSetAtlasSource_shewi")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksmjl"]
-texture = ExtResource("1_ksmjl")
+texture = ExtResource("1_73n5n")
 texture_region_size = Vector2i(112, 129)
 3:8/0 = 0
 3:8/0/texture_origin = Vector2i(0, -32)
@@ -66,7 +66,7 @@ tile_size = Vector2i(112, 64)
 sources/0 = SubResource("TileSetAtlasSource_ksmjl")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1y1b"]
-texture = ExtResource("1_ksmjl")
+texture = ExtResource("1_73n5n")
 texture_region_size = Vector2i(112, 129)
 4:0/0 = 0
 4:0/0/texture_origin = Vector2i(0, -32)
@@ -94,13 +94,13 @@ texture_region_size = Vector2i(112, 129)
 5:2/0/texture_origin = Vector2i(0, -32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xhsg3"]
-texture = ExtResource("2_bhjkn")
+texture = ExtResource("2_bk8o6")
 margins = Vector2i(0, 10)
 texture_region_size = Vector2i(128, 155)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ybxua"]
-texture = ExtResource("3_2njdh")
+texture = ExtResource("3_b851e")
 margins = Vector2i(0, 22)
 texture_region_size = Vector2i(128, 155)
 0:0/0 = 0
@@ -131,5 +131,5 @@ tile_set = SubResource("TileSet_shewi")
 tile_map_data = PackedByteArray("AAD//wIAAgAAAAAAAAD7////AQAAAAAAABA=")
 tile_set = SubResource("TileSet_bhjkn")
 
-[node name="tintu" parent="." unique_id=1864312956 instance=ExtResource("2_shewi")]
-position = Vector2(1042, -981)
+[node name="tintu" parent="." unique_id=1864312956 instance=ExtResource("4_it8ar")]
+position = Vector2(-163, -1141)
