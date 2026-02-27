@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://b8igg7fe76qml"]
 
 [ext_resource type="Texture2D" uid="uid://bfpxyya6htdym" path="res://assets/spritesheets/allTiles_sheet.png" id="1_73n5n"]
-[ext_resource type="Texture2D" uid="uid://cgcoo5ek2fsnd" path="res://assets/spritesheets/House1.png" id="2_bk8o6"]
 [ext_resource type="Texture2D" uid="uid://nejnuami6x0q" path="res://assets/spritesheets/House2.png" id="3_b851e"]
 [ext_resource type="PackedScene" uid="uid://gt1lm7ebo6hq" path="res://scenes/entities/player/tintu.tscn" id="4_it8ar"]
 
@@ -93,12 +92,6 @@ texture_region_size = Vector2i(112, 129)
 5:2/0 = 0
 5:2/0/texture_origin = Vector2i(0, -32)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xhsg3"]
-texture = ExtResource("2_bk8o6")
-margins = Vector2i(0, 10)
-texture_region_size = Vector2i(128, 155)
-0:0/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ybxua"]
 texture = ExtResource("3_b851e")
 margins = Vector2i(0, 22)
@@ -110,7 +103,6 @@ tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(112, 64)
 sources/0 = SubResource("TileSetAtlasSource_v1y1b")
-sources/1 = SubResource("TileSetAtlasSource_xhsg3")
 sources/2 = SubResource("TileSetAtlasSource_ybxua")
 
 [node name="tintu_map" type="Node2D" unique_id=1067123773]
@@ -128,7 +120,7 @@ tile_map_data = PackedByteArray("AAD4/wgAAAAGAAMAAAD5/wgAAAAGAAMAAAD6/wgAAAAGAAM
 tile_set = SubResource("TileSet_shewi")
 
 [node name="Platforms" type="TileMapLayer" parent="Terrain" unique_id=177922300]
-tile_map_data = PackedByteArray("AAD//wIAAgAAAAAAAAD7////AQAAAAAAABA=")
+tile_map_data = PackedByteArray("AAD//wIAAgAAAAAAAAD+/wIAAgAAAAAAAAD9/wIAAgAAAAAAAAD8/wIAAgAAAAAAAAD7/wIAAgAAAAAAAAD6/wIAAgAAAAAAAAD5/wIAAgAAAAAAAAD4/wIAAgAAAAAAAAD3/wIAAgAAAAAAAAD2/wIAAgAAAAAAAAD1/wIAAgAAAAAAAAAAAAIAAgAAAAAAAAABAAIAAgAAAAAAAAACAAIAAgAAAAAAAAADAAIAAgAAAAAAAAAEAAIAAgAAAAAAAAAFAAIAAgAAAAAAAAAGAAIAAgAAAAAAAAAHAAIAAgAAAAAAAAAIAAIAAgAAAAAAAAD1/wgAAgAAAAAAAAD2/wgAAgAAAAAAAAD3/wgAAgAAAAAAAAD4/wgAAgAAAAAAAAD5/wgAAgAAAAAAAAD6/wgAAgAAAAAAAAD7/wgAAgAAAAAAAAD8/wgAAgAAAAAAAAD9/wgAAgAAAAAAAAD+/wgAAgAAAAAAAAD//wgAAgAAAAAAAAAAAAgAAgAAAAAAAAABAAgAAgAAAAAAAAACAAgAAgAAAAAAAAADAAgAAgAAAAAAAAAEAAgAAgAAAAAAAAAFAAgAAgAAAAAAAAAGAAgAAgAAAAAAAAAHAAgAAgAAAAAAAAAIAAgAAgAAAAAAAAAJAAgAAgAAAAAAAAA=")
 tile_set = SubResource("TileSet_bhjkn")
 
 [node name="tintu" parent="." unique_id=1864312956 instance=ExtResource("4_it8ar")]
