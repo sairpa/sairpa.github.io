@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y7tx7ph0dn3k" path="res://scenes/entities/player/tintu.gd" id="1_lrs36"]
 [ext_resource type="Texture2D" uid="uid://cmsxynalfq264" path="res://assets/spritesheets/tintu_sheet.png" id="1_rfvod"]
-[ext_resource type="Texture2D" uid="uid://ds7epy4hv38jd" path="res://assets/images/touch_button_unpressed.png" id="3_r1wtj"]
-[ext_resource type="Texture2D" uid="uid://dphnefcgbyt8v" path="res://assets/images/touch_button_pressed.png" id="4_6sfxx"]
+[ext_resource type="PackedScene" uid="uid://ddo47f38ulwyw" path="res://addons/joystick_addon/joystick.tscn" id="3_y64an"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pb08y"]
 radius = 38.0
@@ -165,11 +164,8 @@ shape = SubResource("CapsuleShape2D_pb08y")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1312707149]
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Camera2D" unique_id=1965787806]
-position = Vector2(-586, 226)
-texture_normal = ExtResource("3_r1wtj")
-texture_pressed = ExtResource("4_6sfxx")
-action = "up"
+[node name="Joystick" parent="Camera2D" unique_id=937670368 instance=ExtResource("3_y64an")]
+position = Vector2(-525, 253)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=772945521]
 libraries/ = SubResource("AnimationLibrary_r1wtj")

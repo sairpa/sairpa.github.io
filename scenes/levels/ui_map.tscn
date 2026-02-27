@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c725ol2t116hg"]
 
-[ext_resource type="Texture2D" uid="uid://djl28itmavbef" path="res://assets/images/NoXP.png" id="1_1t1eg"]
+[ext_resource type="Texture2D" uid="uid://djl28itmavbef" path="res://assets/images/NoXP_old.png" id="1_1t1eg"]
 [ext_resource type="Script" uid="uid://ch0xvx44tt4q" path="res://scenes/entities/ui/main_menu_ui.gd" id="1_7brhh"]
-[ext_resource type="Texture2D" uid="uid://bhaw50a1pw237" path="res://assets/images/unclicked.png" id="3_usy8b"]
-[ext_resource type="Texture2D" uid="uid://t23b2cjk4ws2" path="res://assets/images/pressed.png" id="4_vdrp1"]
-[ext_resource type="Texture2D" uid="uid://vctrne3366fl" path="res://assets/images/hover.png" id="5_r7wk0"]
+[ext_resource type="Texture2D" uid="uid://bhaw50a1pw237" path="res://assets/images/ui elems/unclicked.png" id="3_usy8b"]
+[ext_resource type="Texture2D" uid="uid://t23b2cjk4ws2" path="res://assets/images/ui elems/pressed.png" id="4_vdrp1"]
+[ext_resource type="Texture2D" uid="uid://vctrne3366fl" path="res://assets/images/ui elems/hover.png" id="5_r7wk0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7brhh"]
 texture = ExtResource("1_1t1eg")
