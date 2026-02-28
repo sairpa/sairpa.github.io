@@ -10,8 +10,6 @@ extends Node2D
 @export var left_input:String = "ui_left"
 ##Action for right direction.
 @export var right_input:String = "ui_right"
-##Action for jump
-@export var jump_input:String = "ui_jump"
 var radius = 40
 
 func _draw() -> void:
