@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://y7tx7ph0dn3k" path="res://scenes/entities/player/tintu.gd" id="1_lrs36"]
 [ext_resource type="Texture2D" uid="uid://cmsxynalfq264" path="res://assets/spritesheets/tintu_sheet.png" id="1_rfvod"]
 [ext_resource type="PackedScene" uid="uid://ddo47f38ulwyw" path="res://addons/joystick_addon/joystick.tscn" id="3_y64an"]
-[ext_resource type="PackedScene" uid="uid://blllaffdwbqvd" path="res://addons/joystick_addon/touch_controls.tscn" id="4_r1wtj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pb08y"]
 radius = 38.0
@@ -166,14 +165,11 @@ shape = SubResource("CapsuleShape2D_pb08y")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1312707149]
 
 [node name="Joystick" parent="Camera2D" unique_id=833044297 instance=ExtResource("3_y64an")]
-visible = false
 position = Vector2(-449, 222)
 up_input = "up"
 down_input = "down"
 left_input = "left"
 right_input = "right"
-
-[node name="TouchControls" parent="Camera2D" unique_id=2057812453 instance=ExtResource("4_r1wtj")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=772945521]
 libraries/ = SubResource("AnimationLibrary_r1wtj")
