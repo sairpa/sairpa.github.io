@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vclibyh2ols4"
-path="res://.godot/imported/Screenshot 2025-10-06 172125.png-20d2d98bd3b046c54fe6d5e054387f52.ctex"
+uid="uid://dj6aq3fhc4ik3"
+path="res://.godot/imported/asset_icon.png-ce41ad0f41a3bd9fb8beaf5e77b0331e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/joystick_plugin/Screenshot 2025-10-06 172125.png"
-dest_files=["res://.godot/imported/Screenshot 2025-10-06 172125.png-20d2d98bd3b046c54fe6d5e054387f52.ctex"]
+source_file="res://addons/touch_screen_joystick/asset_icon.png"
+dest_files=["res://.godot/imported/asset_icon.png-ce41ad0f41a3bd9fb8beaf5e77b0331e.ctex"]
 
 [params]
 

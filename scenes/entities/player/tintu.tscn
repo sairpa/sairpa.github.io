@@ -149,10 +149,8 @@ states/win/position = Vector2(728, 155)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_6sfxx"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_a1il4"), "jump", "win", SubResource("AnimationNodeStateMachineTransition_ho3ll"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_lrs36"), "run", "win", SubResource("AnimationNodeStateMachineTransition_y64an"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_r1wtj"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_m3xnx"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_70jas"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_tkupm")]
 graph_offset = Vector2(-162, -5)
 
-[node name="tintu" type="CharacterBody2D" unique_id=1864312956 node_paths=PackedStringArray("joystick_left", "joystick_right")]
+[node name="tintu" type="CharacterBody2D" unique_id=1864312956]
 script = ExtResource("1_lrs36")
-joystick_left = NodePath("")
-joystick_right = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1434080962]
 texture = ExtResource("1_rfvod")
