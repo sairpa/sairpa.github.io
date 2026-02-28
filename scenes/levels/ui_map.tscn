@@ -46,8 +46,10 @@ offset_right = 39.5
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 texture_normal = ExtResource("3_usy8b")
 texture_pressed = ExtResource("4_vdrp1")
 texture_hover = ExtResource("5_r7wk0")
+ignore_texture_size = true
 
 [connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]

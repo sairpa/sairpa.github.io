@@ -64,7 +64,7 @@ tile_layout = 5
 tile_size = Vector2i(112, 64)
 sources/0 = SubResource("TileSetAtlasSource_ksmjl")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1y1b"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5s3fw"]
 texture = ExtResource("1_73n5n")
 texture_region_size = Vector2i(112, 129)
 4:0/0 = 0
@@ -92,7 +92,7 @@ texture_region_size = Vector2i(112, 129)
 5:2/0 = 0
 5:2/0/texture_origin = Vector2i(0, -32)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ybxua"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_73n5n"]
 texture = ExtResource("3_b851e")
 margins = Vector2i(0, 22)
 texture_region_size = Vector2i(128, 155)
@@ -102,8 +102,8 @@ texture_region_size = Vector2i(128, 155)
 tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(112, 64)
-sources/0 = SubResource("TileSetAtlasSource_v1y1b")
-sources/2 = SubResource("TileSetAtlasSource_ybxua")
+sources/0 = SubResource("TileSetAtlasSource_5s3fw")
+sources/2 = SubResource("TileSetAtlasSource_73n5n")
 
 [node name="tintu_map" type="Node2D" unique_id=1067123773]
 

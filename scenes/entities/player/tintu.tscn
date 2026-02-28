@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://y7tx7ph0dn3k" path="res://scenes/entities/player/tintu.gd" id="1_lrs36"]
 [ext_resource type="Texture2D" uid="uid://cmsxynalfq264" path="res://assets/spritesheets/tintu_sheet.png" id="1_rfvod"]
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_y64an"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pb08y"]
 radius = 38.0
@@ -150,8 +149,10 @@ states/win/position = Vector2(728, 155)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_6sfxx"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_a1il4"), "jump", "win", SubResource("AnimationNodeStateMachineTransition_ho3ll"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_lrs36"), "run", "win", SubResource("AnimationNodeStateMachineTransition_y64an"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_r1wtj"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_m3xnx"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_70jas"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_tkupm")]
 graph_offset = Vector2(-162, -5)
 
-[node name="tintu" type="CharacterBody2D" unique_id=1864312956]
+[node name="tintu" type="CharacterBody2D" unique_id=1864312956 node_paths=PackedStringArray("joystick_left", "joystick_right")]
 script = ExtResource("1_lrs36")
+joystick_left = NodePath("")
+joystick_right = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1434080962]
 texture = ExtResource("1_rfvod")
@@ -162,19 +163,6 @@ frame = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1517402136]
 shape = SubResource("CapsuleShape2D_pb08y")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1312707149]
-
-[node name="Virtual Joystick" parent="Camera2D" unique_id=1819729376 instance=ExtResource("3_y64an")]
-offset_left = -641.0
-offset_top = 140.0
-offset_right = -341.0
-offset_bottom = 440.0
-scale = Vector2(0.75, 0.75)
-action_left = "left"
-action_right = "right"
-action_up = "up"
-action_down = "down"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=772945521]
 libraries/ = SubResource("AnimationLibrary_r1wtj")
 autoplay = &"idle"
@@ -182,3 +170,5 @@ autoplay = &"idle"
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=116872412]
 tree_root = SubResource("AnimationNodeStateMachine_lrs36")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1239125286]

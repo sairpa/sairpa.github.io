@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://jlyg72oiin1h"]
+
+[ext_resource type="Script" uid="uid://b517xldatv2du" path="res://addons/joystick_plugin/knob.gd" id="1_4l7fi"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ew0fh"]
+
+[node name="Joystick" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="joystick_range" type="MeshInstance2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.137255)
+scale = Vector2(250, 250)
+mesh = SubResource("SphereMesh_ew0fh")
+
+[node name="knob" type="MeshInstance2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.137255)
+z_index = 1
+scale = Vector2(90, 90)
+mesh = SubResource("SphereMesh_ew0fh")
+script = ExtResource("1_4l7fi")
