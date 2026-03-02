@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://gt1lm7ebo6hq"]
 
 [ext_resource type="Script" uid="uid://y7tx7ph0dn3k" path="res://scenes/entities/player/tintu.gd" id="1_lrs36"]
-[ext_resource type="Texture2D" uid="uid://cmsxynalfq264" path="res://assets/spritesheets/tintu_sheet.png" id="1_rfvod"]
+[ext_resource type="Texture2D" uid="uid://cboje3ldwanva" path="res://assets/spritesheets/tintu_sheet.png" id="1_rfvod"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pb08y"]
 radius = 38.0
