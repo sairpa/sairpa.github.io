@@ -8,7 +8,7 @@ extends Control
 class_name TouchScreenJoystick
 
 ## Enable Anti-aliasing for drawing
-@export var antialiased : bool = false : 
+@export var antialiased : bool = true : 
 	set(b):
 		antialiased = b
 		queue_redraw()

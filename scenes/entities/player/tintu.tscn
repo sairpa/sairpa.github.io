@@ -170,9 +170,7 @@ autoplay = &"idle"
 tree_root = SubResource("AnimationNodeStateMachine_lrs36")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1239125286]
-
-[node name="TouchScreenJoystick" type="Control" parent="Camera2D" unique_id=763882630]
+[node name="TouchScreenJoystick" type="Control" parent="." unique_id=763882630]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -496.0
@@ -180,14 +178,16 @@ offset_top = 191.0
 offset_right = -456.0
 offset_bottom = 231.0
 script = ExtResource("3_y64an")
-antialiased = true
 base_radius = 60.0
 knob_radius = 20.0
 color = Color(1, 1, 1, 0.60784316)
 back_color = Color(0.81153315, 0.27114475, 0, 0.5019608)
 thickness = 5.0
+use_input_actions = true
 action_left = &"left"
 action_right = &"right"
 action_up = &"up"
 action_down = &"down"
 metadata/_custom_type_script = "uid://b7u0hkma7cqfr"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1239125286]
