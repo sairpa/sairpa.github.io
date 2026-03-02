@@ -34,6 +34,10 @@ func movement_loop() -> void:
 			$Sprite2D.flip_h =true
 		elif move_direction.x > 0:
 			$Sprite2D.flip_h = false
+		#if move_direction.y > 0:
+			#$Sprite2D.rot
+		#elif move_direction.y < 0:
+			#$Sprite2D.rotate(-(PI/2))
 	
 	if motion != Vector2.ZERO and state == State.IDLE:
 		state = State.RUN
@@ -43,8 +47,11 @@ func movement_loop() -> void:
 		update_animation()
 	
 	if Input.is_action_pressed("jump"):
-		state = State.JUMP
-		update_animation()
+		#state = State.JUMP
+		#update_animation()
+		#$Sprite2D.rotation = lerp(0,int(-PI),1)
+		#$Sprite2D.rotation = lerp(int($Sprite2D.rotation),0,1)
+		pass
 	else:
 		state = State.IDLE
 		update_animation()
