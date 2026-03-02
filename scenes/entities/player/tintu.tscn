@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y7tx7ph0dn3k" path="res://scenes/entities/player/tintu.gd" id="1_lrs36"]
 [ext_resource type="Texture2D" uid="uid://cboje3ldwanva" path="res://assets/spritesheets/tintu_sheet.png" id="1_rfvod"]
+[ext_resource type="Script" uid="uid://b7u0hkma7cqfr" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="3_y64an"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pb08y"]
 radius = 38.0
@@ -170,3 +171,23 @@ tree_root = SubResource("AnimationNodeStateMachine_lrs36")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1239125286]
+
+[node name="TouchScreenJoystick" type="Control" parent="Camera2D" unique_id=763882630]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -496.0
+offset_top = 191.0
+offset_right = -456.0
+offset_bottom = 231.0
+script = ExtResource("3_y64an")
+antialiased = true
+base_radius = 60.0
+knob_radius = 20.0
+color = Color(1, 1, 1, 0.60784316)
+back_color = Color(0.81153315, 0.27114475, 0, 0.5019608)
+thickness = 5.0
+action_left = &"left"
+action_right = &"right"
+action_up = &"up"
+action_down = &"down"
+metadata/_custom_type_script = "uid://b7u0hkma7cqfr"

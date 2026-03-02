@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://l3l16bpskw3i"]
 
-[ext_resource type="Texture2D" uid="uid://bfpxyya6htdym" path="res://assets/spritesheets/allTiles_sheet.png" id="1_ksmjl"]
+[ext_resource type="Texture2D" uid="uid://pk3041tfj1l4" path="res://assets/spritesheets/allTiles_sheet.png" id="1_ksmjl"]
 [ext_resource type="PackedScene" uid="uid://gt1lm7ebo6hq" path="res://scenes/entities/player/tintu.tscn" id="2_shewi"]
 [ext_resource type="Texture2D" uid="uid://nejnuami6x0q" path="res://assets/spritesheets/House2.png" id="3_2njdh"]
 
