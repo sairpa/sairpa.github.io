@@ -21,13 +21,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -97.00001
-offset_top = -39.999996
-offset_right = -97.0
-offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.2, 1.1538464)
 theme_override_styles/panel = SubResource("StyleBoxTexture_7brhh")
 
 [node name="Button" type="Button" parent="." unique_id=563711636]
