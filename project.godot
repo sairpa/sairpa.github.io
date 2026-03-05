@@ -29,6 +29,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="sairpa"
 
+[editor]
+
+movie_writer/disable_vsync=true
+
 [filesystem]
 
 import/blender/enabled=false

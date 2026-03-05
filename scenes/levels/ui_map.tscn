@@ -2,9 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://jb0dkf1og30" path="res://assets/images/NoXP_old.png" id="1_1t1eg"]
 [ext_resource type="Script" uid="uid://ch0xvx44tt4q" path="res://scenes/entities/ui/main_menu_ui.gd" id="1_7brhh"]
-[ext_resource type="Texture2D" uid="uid://bafw6ab6vyfnh" path="res://assets/images/ui elems/unclicked.png" id="3_usy8b"]
-[ext_resource type="Texture2D" uid="uid://dgv6865xqsvgp" path="res://assets/images/ui elems/pressed.png" id="4_vdrp1"]
-[ext_resource type="Texture2D" uid="uid://dsxk8q440dm8h" path="res://assets/images/ui elems/hover.png" id="5_r7wk0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7brhh"]
 texture = ExtResource("1_1t1eg")
@@ -24,34 +21,34 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -143.0
+offset_left = -97.00001
 offset_top = -39.999996
-offset_right = -143.0
+offset_right = -97.0
 offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.2, 1.1538464)
 theme_override_styles/panel = SubResource("StyleBoxTexture_7brhh")
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=1004464931]
-layout_direction = 1
+[node name="Button" type="Button" parent="." unique_id=563711636]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -39.5
-offset_top = -19.0
-offset_right = 39.5
-offset_bottom = 19.0
+offset_left = -28.0
+offset_top = -15.5
+offset_right = 28.0
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
-action_mode = 0
+theme_override_colors/font_color = Color(0.8357206, 0.940971, 0, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_pressed_color = Color(0.90167123, 0.31414586, 3.85046e-07, 1)
+theme_override_font_sizes/font_size = 50
 button_mask = 7
-texture_normal = ExtResource("3_usy8b")
-texture_pressed = ExtResource("4_vdrp1")
-texture_hover = ExtResource("5_r7wk0")
+text = "START"
+autowrap_trim_flags = 192
 
-[connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
