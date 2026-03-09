@@ -7,6 +7,8 @@
 texture = ExtResource("1_1t1eg")
 modulate_color = Color(0.20080861, 0.20080861, 0.20080861, 1)
 
+[sub_resource type="Theme" id="Theme_7brhh"]
+
 [node name="UiMap" type="Control" unique_id=1041018326]
 layout_mode = 3
 anchors_preset = 15
@@ -27,17 +29,18 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_7brhh")
 
 [node name="Button" type="Button" parent="." unique_id=563711636]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -28.0
-offset_top = -15.5
-offset_right = 28.0
-offset_bottom = 15.5
+anchors_preset = -1
+anchor_left = 0.439
+anchor_top = 0.44700003
+anchor_right = 0.56100005
+anchor_bottom = 0.55300003
+offset_left = 50.079956
+offset_top = 22.659973
+offset_right = -50.08008
+offset_bottom = -22.660034
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_7brhh")
 theme_override_colors/font_color = Color(0.8357206, 0.940971, 0, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_pressed_color = Color(0.90167123, 0.31414586, 3.85046e-07, 1)
@@ -45,5 +48,25 @@ theme_override_font_sizes/font_size = 50
 button_mask = 7
 text = "START"
 autowrap_trim_flags = 192
+
+[node name="Label" type="Label" parent="." unique_id=405225176]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37300003
+anchor_top = 0.186
+anchor_right = 0.62700003
+anchor_bottom = 0.29200003
+offset_left = -0.44006348
+offset_top = 0.08000183
+offset_right = 0.44000244
+offset_bottom = -0.24002075
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.9999997, 0.44674784, 0.1491979, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.5302972, 0.8849198, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 55
+text = "Hiii! I'm Ajay"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
