@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajay's Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="./icon.png">
     <style>
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -50,6 +51,7 @@
         }
 
         .nav-btn:disabled {
+            display: none;
             opacity: 0.2;
             cursor: not-allowed;
             border-color: rgba(255, 255, 255, 0.2);
@@ -202,7 +204,7 @@
                     <a href="mailto:pranav.ajay2000@gmail.com">Email</a> |
                     <a href="https://github.com/sairpa" target="_blank">GitHub</a> |
                     <a href="https://linkedin.com/in/sairpa" target="_blank">LinkedIn</a> |
-                    <a href="https://sairpa.github.io" target="_blank">Website</a>
+                    <a href="https://sairpa.github.io/Resume/" target="_blank">Resume</a>
                 </p>
             </div>
         </div>
@@ -475,6 +477,12 @@
 
             // Listeners
             document.addEventListener('mousemove', onDocumentMouseMove);
+            
+            // Request device orientation if supported natively
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', onDeviceOrientation, false);
+            }
+
             window.addEventListener('resize', onResize);
 
             animate();
@@ -519,6 +527,31 @@
         function onDocumentMouseMove(event) {
             mouseX = (event.clientX - windowHalfX);
             mouseY = (event.clientY - windowHalfY);
+        }
+
+        // Add Device Orientation for mobile parallax
+        function onDeviceOrientation(event) {
+            // gamma is left-to-right tilt in degrees [-90 to 90]
+            // beta is front-to-back tilt in degrees [-180 to 180]
+            if (event.gamma !== null && event.beta !== null) {
+                // Map tilt angles to roughly match mouseX/mouseY pixel scales
+                // 30 degrees of tilt = full window width/height tilt
+                const maxTilt = 30; 
+                
+                let gamma = event.gamma;
+                let beta = event.beta;
+
+                // Clamp values
+                if (gamma > maxTilt) gamma = maxTilt;
+                if (gamma < -maxTilt) gamma = -maxTilt;
+                // Center beta around 45 degrees (comfortable holding angle)
+                beta = beta - 45; 
+                if (beta > maxTilt) beta = maxTilt;
+                if (beta < -maxTilt) beta = -maxTilt;
+
+                mouseX = (gamma / maxTilt) * windowHalfX;
+                mouseY = (beta / maxTilt) * windowHalfY;
+            }
         }
 
         function animate() {
