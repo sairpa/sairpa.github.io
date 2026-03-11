@@ -177,6 +177,76 @@
             font-weight: bold;
         }
 
+        .container-large {
+            max-width: 1100px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-height: 55vh;
+            overflow-y: auto;
+            padding-right: 15px; /* space for scrollbar */
+            margin-top: 1rem;
+        }
+
+        /* Custom Webkit Scrollbar for grid */
+        .projects-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+        .projects-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            margin-block: 5px;
+        }
+        .projects-grid::-webkit-scrollbar-thumb {
+            background: rgba(0, 170, 255, 0.4);
+            border-radius: 4px;
+        }
+        .projects-grid::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 255, 170, 0.8);
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 1.5rem; /* Override typical li padding */
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 170, 255, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.25rem;
+        }
+
+        .project-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.5;
+            flex-grow: 1; 
+        }
+
+        #projects.section {
+            display: flex;
+            flex-direction: column;
+            /* Adjust padding to maximize inner grid space */
+            padding-bottom: 1.5rem;
+        }
+
         .footer {
             text-align: center;
             font-size: 0.9rem;
@@ -184,8 +254,30 @@
             margin-top: 2rem;
         }
 
+        .mobile-dots {
+            display: none;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .dot.active {
+            background: #00aaff;
+            transform: scale(1.3);
+        }
+
         /* Mobile Nav Adjustments */
         @media (max-width: 768px) {
+            .mobile-dots {
+                display: flex;
+            }
             .nav-btn {
                 padding: 10px 16px;
                 font-size: 0.9rem;
@@ -237,6 +329,39 @@
             .job-title {
                 display: block; 
                 margin-bottom: 0.2rem;
+            }
+            
+            #projects.section {
+                padding: 1.5rem 1rem;
+                max-height: 75vh;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .projects-grid {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-snap-type: x mandatory;
+                padding-bottom: 1.5rem; /* space for card shadows */
+                gap: 1rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Hide scrollbar Firefox */
+            }
+            
+            .projects-grid::-webkit-scrollbar {
+                display: none; /* Hide scrollbar Chrome/Safari */
+            }
+
+            .project-card {
+                flex: 0 0 85%; /* Cards take up 85% width so next card peeks in */
+                scroll-snap-align: center;
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1rem;
             }
         }
     </style>
@@ -319,20 +444,34 @@
 
         <!-- Section 4: Projects (Footer included) -->
         <div class="page-section">
-            <div class="container">
+            <div class="container container-large">
                 <div class="section" id="projects">
                     <h2>Some Stuff I've Made</h2>
-                    <ul>
-                        <li>
+                    <ul class="projects-grid" id="project-list">
+                        <li class="project-card">
                             <h3><a href="https://github.com/sairpa/kreative_rum" target="_blank">Kreative Rum</a></h3>
                             <p>A collection of my game dev and pipeline experiments.</p>
                         </li>
-                        <li>
-                            <h3><a href="https://github.com/sairpa/ToonLytV2" target="_blank">ToonLyt TensorFlow
-                                    Lite</a></h3>
-                            <p>An Android app that turns your photos into artsy images.</p>
+                        <li class="project-card">
+                            <h3><a href="https://github.com/sairpa/ToonLytV2" target="_blank">ToonLyt Lite</a></h3>
+                            <p>An Android app that turns your photos into artsy images using style <br>transfer and powered by Tensorflow Lite.</p>
+                        </li>
+                        <li class="project-card">
+                            <h3><a href="https://github.com/sairpa/shrula_odyssey" target="_blank">Shrula Odyssey</a></h3>
+                            <p>A 2D platformer developed in Godot 4 while learning the ropes of game design.</p>
+                        </li>
+                        <li class="project-card">
+                            <h3><a href="https://github.com/sairpa/gfx_garden" target="_blank">GFX Garden</a></h3>
+                            <p>An ongoing exploration of computer graphics and rendering adventures.</p>
+                        </li>
+                        <li class="project-card">
+                            <h3><a href="http://www.youtube.com/@palladiumos" target="_blank">PalladiumOS (UI & Content)</a></h3>
+                            <p>Designed UI/UX prototypes for Android apps and created asset animations using Figma, Blender, and Kdenlive.</p>
                         </li>
                     </ul>
+                    
+                    <div class="mobile-dots" id="project-dots"></div>
+
                     <div class="footer">
                         <p>&copy; 2026 R Pranav Ajay. All Rights Reserved.</p>
                     </div>
@@ -415,6 +554,96 @@
                 throttleScroll(-1); // swipe down -> previous section
             }
         }
+
+        // --- Mobile Dots Observer ---
+        const projectList = document.getElementById('project-list');
+        const projectItems = document.querySelectorAll('.project-card');
+        const dotsContainer = document.getElementById('project-dots');
+
+        // Create dots dynamically based on number of projects
+        projectItems.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active'); // First is active on load
+            dotsContainer.appendChild(dot);
+        });
+
+        // Use IntersectionObserver to highlight active dot during scroll snapping
+        const dots = document.querySelectorAll('#project-dots .dot');
+        
+        // We need an array of our original items to map correctly
+        const originalCardsArray = Array.from(projectItems);
+
+        // Infinite Loop Prep: Clone first and last cards
+        const firstClone = originalCardsArray[0].cloneNode(true);
+        const lastClone = originalCardsArray[originalCardsArray.length - 1].cloneNode(true);
+        
+        // Mark them so Observer ignores them for dots
+        firstClone.classList.add('clone');
+        lastClone.classList.add('clone');
+
+        // Append to edges
+        projectList.appendChild(firstClone);
+        projectList.insertBefore(lastClone, projectList.firstChild);
+
+        // Scroll to the first REAL item, bypassing the prepended clone
+        // We use a slight delay so CSS/layout can catch up
+        setTimeout(() => {
+            const firstRealCard = projectList.children[1];
+            projectList.scrollTo({ left: firstRealCard.offsetLeft - projectList.offsetLeft, behavior: 'instant' });
+        }, 50);
+
+        // Infinite Scroll Event Listener
+        projectList.addEventListener('scroll', () => {
+            if (projectList.scrollWidth === 0) return; // Not visible/initialized
+            
+            // Reached the right end (the cloned first item)
+            // If scrollLeft + clientWidth is roughly equal to scrollWidth
+            if (projectList.scrollLeft + projectList.clientWidth >= projectList.scrollWidth - 10) {
+                const firstRealCard = projectList.children[1];
+                projectList.scrollTo({ left: firstRealCard.offsetLeft - projectList.offsetLeft, behavior: 'instant' });
+            }
+            
+            // Reached the left end (the cloned last item)
+            if (projectList.scrollLeft <= 5) { // 5px buffer
+                const lastRealCard = projectList.children[projectList.children.length - 2];
+                projectList.scrollTo({ left: lastRealCard.offsetLeft - projectList.offsetLeft, behavior: 'instant' });
+            }
+        }, { passive: true });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    let dotIndex = -1;
+                    
+                    if (entry.target.classList.contains('clone')) {
+                        // Is this the cloned last element at the start?
+                        if (entry.target === projectList.children[0]) {
+                            dotIndex = originalCardsArray.length - 1;
+                        } 
+                        // Or the cloned first element at the end?
+                        else if (entry.target === projectList.children[projectList.children.length - 1]) {
+                            dotIndex = 0;
+                        }
+                    } else {
+                        // Regular cards
+                        dotIndex = originalCardsArray.indexOf(entry.target);
+                    }
+
+                    if (dotIndex >= 0) {
+                        dots.forEach(d => d.classList.remove('active'));
+                        if (dots[dotIndex]) dots[dotIndex].classList.add('active');
+                    }
+                }
+            });
+        }, {
+            root: projectList,
+            threshold: 0.6 // Trigger when card is 60% visible
+        });
+
+        projectItems.forEach(card => observer.observe(card));
+        observer.observe(firstClone);
+        observer.observe(lastClone);
 
         // --- Three.js Logic ---
         let scene, camera, renderer, stars;

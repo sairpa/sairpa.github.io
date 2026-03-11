@@ -1,0 +1,77 @@
+R Pranav Ajay
+pranav.ajay2000@gmail.com https://github.com/sairpa
+
+https://linkedin.com/in/sairpa
+
+https://sairpa.github.io
+
+Education
+Ettimadai, Coimbatore
+July 2018 - June 2022
+
+Amrita School of Engineering
+Bachelor of Technology Computer Science & Engineering GPA: 8.04
+
+Maharishi International Residential School Maharishi International Residential School
+Sriperumbudur, Kanchipuram
+Higher Secondary, CBSE Computer Science GPA: XII- 455/500,X- 10 CGPA
+2016 - 2018
+
+Experience
+Bengaluru, Karnataka, India
+August 2024 - Present
+
+Caterpillar
+Senior Associate Engineer
+
+◦ Represented the Indian team on a business visit to Brazil, to analyze metrics & gather feedback.
+◦ Worked on the deployment of a Project Chrono fork in the HIL(Hardware in Loop) & SIL (Software in
+Loop) environments.
+◦ Worked on a Carla based fork application (Unreal Engine 4 Fork) & deployed it on HIL(Hardware in
+Loop) & SIL (Software in Loop) environments.
+◦ Worked on profiling, optimization and overall graphical enhancement of modules within the project for
+the hardware environment.
+◦ Worked on establishing CI/CD Pipelines end to end in the project scope.
+August 2022 - August 2024
+
+Associate Engineer
+
+◦ Worked on a Carla fork & was involved on creating scenario generation, implementing a newer pipeline
+for the simulations
+◦ Worked on a Project Chrono fork, implementing scene graphs, overall simulation pipeline, & asset
+handling pipeline.
+◦ Worked on a SimPy fork, implementing scene graph wrappers for non-real-time simulations, & handling
+simulation logic.
+January 2022 - July 2022
+
+College Intern
+
+◦ Worked on an Unreal Engine 4 fork & worked on custom scenario generation, asset pipeline, & scripting
+the simulations.
+◦ Worked on a pipeline involving Unity & propriety tool chains & focused on creating scene graphs for the
+simulations.
+◦ Worked on modeling the 3D assets & integrated them in the simulation pipeline.
+◦ Having exposure to the C++ toolchains (Qt, CMake, vcpkg, msvc, clang) involved in the pipeline.
+
+Skills
+Programming Languages:
+Frameworks:
+Technical Interests:
+
+C++, JavaScript, Python, GD Script
+Unreal Engine, poco, boost, dear imgui, Godot, Blender, Three JS
+Graphics Rendering, Game Development, Computational Photography
+
+Projects
+Kreative Rum Godot 4, Blender, Krita
+https://github.com/sairpa/kreative_rum
+A Collection of all my projects pertaining to Game Development & pipeline
+ToonLyt TensorFlow Lite, Kotlin
+https://github.com/sairpa/ToonLytV2
+An Android App with Pastiche creation abilities based on Google's pastiche tensorflow lite library
+Content Creator Kdenlive, Figma, Blender, YouTube
+http://www.youtube.com/@palladiumos
+Created assets & animations for new releases & administrated the YouTube channel
+User Interface Development Figma, Android Studio, Kotlin
+https://web.archive.org/web/20230306145421/https://palladiumos.com/
+Designed UI/UX prototypes & implemented them into the Android Apps
