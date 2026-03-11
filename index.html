@@ -183,6 +183,32 @@
             color: #888;
             margin-top: 2rem;
         }
+
+        /* Mobile Nav Adjustments */
+        @media (max-width: 768px) {
+            .nav-btn {
+                padding: 12px 18px;
+                font-size: 1rem;
+            }
+            #btn-up {
+                top: auto;
+                bottom: 20px;
+                left: 20px;
+                transform: none;
+            }
+            #btn-down {
+                bottom: 20px;
+                left: auto;
+                right: 20px;
+                transform: none;
+            }
+            .header-content h1 {
+                font-size: 2.8rem;
+            }
+            .section {
+                padding: 1.5rem;
+            }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
@@ -311,8 +337,58 @@
             targetCameraY = - (currentSection * 5);
         }
 
+        // --- Gesture and Scroll Logic ---
+        let isThrottled = false;
+        function throttleScroll(direction) {
+            if (isThrottled) return;
+            
+            // Check boundaries
+            if (direction === 1 && currentSection >= totalSections - 1) return;
+            if (direction === -1 && currentSection <= 0) return;
+
+            navigate(direction);
+            
+            isThrottled = true;
+            // 1s matches the CSS transition of content-wrapper
+            setTimeout(() => {
+                isThrottled = false;
+            }, 1000); 
+        }
+
+        // Mouse wheel for desktop
+        window.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0) {
+                throttleScroll(1);
+            } else if (e.deltaY < 0) {
+                throttleScroll(-1);
+            }
+        }, { passive: true });
+
+        // Touch swipe for mobile
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        window.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        window.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleGesture();
+        }, { passive: true });
+
+        function handleGesture() {
+            const minSwipeDistance = 50;
+            if (touchStartY - touchEndY > minSwipeDistance) {
+                throttleScroll(1); // swipe up -> next section
+            } else if (touchEndY - touchStartY > minSwipeDistance) {
+                throttleScroll(-1); // swipe down -> previous section
+            }
+        }
+
         // --- Three.js Logic ---
         let scene, camera, renderer, stars;
+        let debrisGroup; // Global ref for animation
 
         // Desktop Models
         let planetGroup, spaceshipGroup, moonGroup;
@@ -362,6 +438,67 @@
                 roughness: 0.4,
                 metalness: 0.4
             });
+
+        // Helper to create low-poly materials for background objects
+            const getLowPolyMaterial = (color) => new THREE.MeshStandardMaterial({
+                color: color,
+                flatShading: true,
+                roughness: 0.8,
+                metalness: 0.2
+            });
+
+            // --- Background Debris / Mini-Planets ---
+            debrisGroup = new THREE.Group();
+            const debrisCount = 150; // High count for richness
+            
+            // Geometries for debris (lower poly spheres and rings)
+            const smallPlanetGeo = new THREE.SphereGeometry(1, 16, 16); 
+            const smallRingGeo = new THREE.TorusGeometry(1.5, 0.2, 8, 32);
+            
+            for(let i=0; i < debrisCount; i++) {
+                // Initialize a random starting hue
+                const startHue = Math.random();
+                const mat = getLowPolyMaterial(new THREE.Color().setHSL(startHue, 0.8, 0.5));
+                
+                // Keep reference to material to animate color
+                const mesh = new THREE.Mesh(smallPlanetGeo, mat);
+                
+                // 30% chance to have a ring
+                if (Math.random() > 0.7) {
+                    const ringMat = getLowPolyMaterial(new THREE.Color().setHSL(Math.random(), 0.8, 0.5));
+                    const ringMesh = new THREE.Mesh(smallRingGeo, ringMat);
+                    ringMesh.rotation.x = Math.random() * Math.PI;
+                    mesh.add(ringMesh);
+                    
+                    // Store ring mat for animation
+                    mesh.userData.ringMat = ringMat;
+                    mesh.userData.ringHueSpeed = (Math.random() - 0.5) * 0.005;
+                }
+                
+                // Random position spread far and wide, primarily behind the main action (-Z)
+                mesh.position.x = (Math.random() - 0.5) * 200;
+                mesh.position.y = (Math.random() - 0.5) * 200;
+                mesh.position.z = (Math.random() - 0.5) * 150 - 50; 
+                
+                // Random rotation
+                mesh.rotation.x = Math.random() * Math.PI;
+                mesh.rotation.y = Math.random() * Math.PI;
+                mesh.rotation.z = Math.random() * Math.PI;
+                
+                // Scale smaller to save visual noise/performance
+                const scale = Math.random() * 0.8 + 0.2;
+                mesh.scale.set(scale, scale, scale);
+                
+                // Save random rotation and hue speeds in userdata to animate them
+                mesh.userData.rx = (Math.random() - 0.5) * 0.02;
+                mesh.userData.ry = (Math.random() - 0.5) * 0.02;
+                mesh.userData.rz = (Math.random() - 0.5) * 0.02;
+                mesh.userData.mat = mat;
+                mesh.userData.hueSpeed = (Math.random() - 0.5) * 0.005;
+                
+                debrisGroup.add(mesh);
+            }
+            scene.add(debrisGroup);
 
             // 1. High Poly Planet with Ring (About Me - Section 1)
             planetGroup = new THREE.Group();
@@ -560,6 +697,34 @@
             // Interpolate camera to target position smoothly
             camera.position.z += (targetCameraZ - camera.position.z) * 0.05;
             camera.position.y += (targetCameraY - camera.position.y) * 0.05;
+
+            // Animate background debris
+            scene.children.forEach(child => {
+                if (child === debrisGroup) { // Check if it's the debris group
+                    child.children.forEach(mesh => {
+                        // Rotation
+                        mesh.rotation.x += mesh.userData.rx;
+                        mesh.rotation.y += mesh.userData.ry;
+                        mesh.rotation.z += mesh.userData.rz;
+                        
+                        // Color Shift (Planet)
+                        const hsl = {};
+                        mesh.userData.mat.color.getHSL(hsl);
+                        hsl.h = (hsl.h + mesh.userData.hueSpeed) % 1;
+                        if (hsl.h < 0) hsl.h += 1;
+                        mesh.userData.mat.color.setHSL(hsl.h, hsl.s, hsl.l);
+                        
+                        // Color Shift (Ring, if it exists)
+                        if (mesh.userData.ringMat) {
+                            const ringHsl = {};
+                            mesh.userData.ringMat.color.getHSL(ringHsl);
+                            ringHsl.h = (ringHsl.h + mesh.userData.ringHueSpeed) % 1;
+                            if (ringHsl.h < 0) ringHsl.h += 1;
+                            mesh.userData.ringMat.color.setHSL(ringHsl.h, ringHsl.s, ringHsl.l);
+                        }
+                    });
+                }
+            });
 
             // Subtle continuous rotation for desktop objects
             planetGroup.rotation.y += 0.005;
