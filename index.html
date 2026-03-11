@@ -187,26 +187,56 @@
         /* Mobile Nav Adjustments */
         @media (max-width: 768px) {
             .nav-btn {
-                padding: 12px 18px;
-                font-size: 1rem;
+                padding: 10px 16px;
+                font-size: 0.9rem;
             }
             #btn-up {
                 top: auto;
-                bottom: 20px;
-                left: 20px;
+                bottom: 12px;
+                left: 12px;
                 transform: none;
             }
             #btn-down {
-                bottom: 20px;
+                bottom: 12px;
                 left: auto;
-                right: 20px;
+                right: 12px;
                 transform: none;
             }
+            .page-section {
+                padding: 0 1rem 65px 1rem; /* Pad bottom so it clears buttons */
+            }
             .header-content h1 {
-                font-size: 2.8rem;
+                font-size: 2.3rem;
             }
             .section {
-                padding: 1.5rem;
+                padding: 1.5rem 1.2rem;
+                width: 100%;
+                box-sizing: border-box;
+                max-height: 75vh;
+                overflow-y: auto;
+            }
+            .section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
+                padding-bottom: 0.4rem;
+            }
+            .section h3 {
+                font-size: 1.1rem;
+                margin-top: 0;
+                margin-bottom: 0.3rem;
+            }
+            .section p, .section li {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 0.3rem;
+                padding-bottom: 0.4rem;
+            }
+            ul {
+                margin-top: 0.5rem !important;
+            }
+            .job-title {
+                display: block; 
+                margin-bottom: 0.2rem;
             }
         }
     </style>
