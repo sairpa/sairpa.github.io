@@ -564,6 +564,7 @@
         const projectList = document.getElementById('project-list');
         const projectItems = document.querySelectorAll('.project-card');
         const dotsContainer = document.getElementById('project-dots');
+        const isMobileCarousel = window.matchMedia('(max-width: 768px)').matches;
 
         // Create dots dynamically based on number of projects
         projectItems.forEach((_, i) => {
@@ -573,82 +574,86 @@
             dotsContainer.appendChild(dot);
         });
 
-        // Use IntersectionObserver to highlight active dot during scroll snapping
-        const dots = document.querySelectorAll('#project-dots .dot');
-        
-        // We need an array of our original items to map correctly
-        const originalCardsArray = Array.from(projectItems);
-
-        // Infinite Loop Prep: Clone first and last cards
-        const firstClone = originalCardsArray[0].cloneNode(true);
-        const lastClone = originalCardsArray[originalCardsArray.length - 1].cloneNode(true);
-        
-        // Mark them so Observer ignores them for dots
-        firstClone.classList.add('clone');
-        lastClone.classList.add('clone');
-
-        // Append to edges
-        projectList.appendChild(firstClone);
-        projectList.insertBefore(lastClone, projectList.firstChild);
-
-        // Scroll to the first REAL item, bypassing the prepended clone
-        // We use a slight delay so CSS/layout can catch up
-        setTimeout(() => {
-            const firstRealCard = projectList.children[1];
-            projectList.scrollTo({ left: firstRealCard.offsetLeft - projectList.offsetLeft, behavior: 'instant' });
-        }, 50);
-
-        // Infinite Scroll Event Listener
-        projectList.addEventListener('scroll', () => {
-            if (projectList.scrollWidth === 0) return; // Not visible/initialized
+        if (isMobileCarousel) {
+            // Use IntersectionObserver to highlight active dot during scroll snapping
+            const dots = document.querySelectorAll('#project-dots .dot');
             
-            // Reached the right end (the cloned first item)
-            // If scrollLeft + clientWidth is roughly equal to scrollWidth
-            if (projectList.scrollLeft + projectList.clientWidth >= projectList.scrollWidth - 10) {
+            // We need an array of our original items to map correctly
+            const originalCardsArray = Array.from(projectItems);
+
+            // Infinite Loop Prep: Clone first and last cards
+            const firstClone = originalCardsArray[0].cloneNode(true);
+            const lastClone = originalCardsArray[originalCardsArray.length - 1].cloneNode(true);
+            
+            // Mark them so Observer ignores them for dots
+            firstClone.classList.add('clone');
+            lastClone.classList.add('clone');
+
+            // Append to edges
+            projectList.appendChild(firstClone);
+            projectList.insertBefore(lastClone, projectList.firstChild);
+
+            // Scroll to the first REAL item, bypassing the prepended clone
+            // We use a slight delay so CSS/layout can catch up
+            setTimeout(() => {
                 const firstRealCard = projectList.children[1];
                 projectList.scrollTo({ left: firstRealCard.offsetLeft - projectList.offsetLeft, behavior: 'instant' });
-            }
-            
-            // Reached the left end (the cloned last item)
-            if (projectList.scrollLeft <= 5) { // 5px buffer
-                const lastRealCard = projectList.children[projectList.children.length - 2];
-                projectList.scrollTo({ left: lastRealCard.offsetLeft - projectList.offsetLeft, behavior: 'instant' });
-            }
-        }, { passive: true });
+            }, 50);
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    let dotIndex = -1;
-                    
-                    if (entry.target.classList.contains('clone')) {
-                        // Is this the cloned last element at the start?
-                        if (entry.target === projectList.children[0]) {
-                            dotIndex = originalCardsArray.length - 1;
-                        } 
-                        // Or the cloned first element at the end?
-                        else if (entry.target === projectList.children[projectList.children.length - 1]) {
-                            dotIndex = 0;
-                        }
-                    } else {
-                        // Regular cards
-                        dotIndex = originalCardsArray.indexOf(entry.target);
-                    }
-
-                    if (dotIndex >= 0) {
-                        dots.forEach(d => d.classList.remove('active'));
-                        if (dots[dotIndex]) dots[dotIndex].classList.add('active');
-                    }
+            // Infinite Scroll Event Listener
+            projectList.addEventListener('scroll', () => {
+                if (projectList.scrollWidth === 0) return; // Not visible/initialized
+                
+                // Reached the right end (the cloned first item)
+                // If scrollLeft + clientWidth is roughly equal to scrollWidth
+                if (projectList.scrollLeft + projectList.clientWidth >= projectList.scrollWidth - 10) {
+                    const firstRealCard = projectList.children[1];
+                    projectList.scrollTo({ left: firstRealCard.offsetLeft - projectList.offsetLeft, behavior: 'instant' });
                 }
-            });
-        }, {
-            root: projectList,
-            threshold: 0.6 // Trigger when card is 60% visible
-        });
+                
+                // Reached the left end (the cloned last item)
+                if (projectList.scrollLeft <= 5) { // 5px buffer
+                    const lastRealCard = projectList.children[projectList.children.length - 2];
+                    projectList.scrollTo({ left: lastRealCard.offsetLeft - projectList.offsetLeft, behavior: 'instant' });
+                }
+            }, { passive: true });
 
-        projectItems.forEach(card => observer.observe(card));
-        observer.observe(firstClone);
-        observer.observe(lastClone);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        let dotIndex = -1;
+                        
+                        if (entry.target.classList.contains('clone')) {
+                            // Is this the cloned last element at the start?
+                            if (entry.target === projectList.children[0]) {
+                                dotIndex = originalCardsArray.length - 1;
+                            } 
+                            // Or the cloned first element at the end?
+                            else if (entry.target === projectList.children[projectList.children.length - 1]) {
+                                dotIndex = 0;
+                            }
+                        } else {
+                            // Regular cards
+                            dotIndex = originalCardsArray.indexOf(entry.target);
+                        }
+
+                        if (dotIndex >= 0) {
+                            dots.forEach(d => d.classList.remove('active'));
+                            if (dots[dotIndex]) dots[dotIndex].classList.add('active');
+                        }
+                    }
+                });
+            }, {
+                root: projectList,
+                threshold: 0.6 // Trigger when card is 60% visible
+            });
+
+            projectItems.forEach(card => observer.observe(card));
+            observer.observe(firstClone);
+            observer.observe(lastClone);
+        } else {
+            dotsContainer.style.display = 'none';
+        }
 
         // --- Three.js Logic ---
         let scene, camera, renderer, stars;
